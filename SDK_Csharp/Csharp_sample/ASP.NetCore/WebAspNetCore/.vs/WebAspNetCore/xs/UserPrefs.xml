@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{AC2456D9-49A2-445E-AF87-40552E821315}|Default">
+  <MonoDevelop.Ide.ItemProperties.WebAspNetCore PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="WebAspNetCore/Pages/Index.cshtml.cs">
+    <Files>
+      <File FileName="WebAspNetCore/Program.cs" Line="1" Column="1" />
+      <File FileName="WebAspNetCore/Pages/Index.cshtml.cs" Line="20" Column="36" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="WebAspNetCore" expanded="True">
+            <Node name="WebAspNetCore" expanded="True">
+              <Node name="Pages" expanded="True">
+                <Node name="Index.cshtml" expanded="True">
+                  <Node name="Index.cshtml.cs" selected="True" />
+                </Node>
+              </Node>
+              <Node name="Properties" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

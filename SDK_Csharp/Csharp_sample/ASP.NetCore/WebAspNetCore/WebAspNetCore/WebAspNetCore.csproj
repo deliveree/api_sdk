@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App">
+      <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
+      <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="IO.Deliveree">
+      <HintPath>..\..\..\SDK_deliveree_v1.0.0\IO.Deliveree.dll</HintPath>
+    </Reference>
+    <Reference Include="JsonSubTypes">
+      <HintPath>..\..\..\SDK_deliveree_v1.0.0\JsonSubTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\SDK_deliveree_v1.0.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\..\..\SDK_deliveree_v1.0.0\RestSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

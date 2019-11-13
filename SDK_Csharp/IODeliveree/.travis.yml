@@ -1,0 +1,10 @@
+#
+# Created by TMA Team
+# Author: Quoc Anh
+#
+language: csharp
+mono:
+  - latest
+solution: IO.Deliveree.sln
+script:
+  - /bin/sh ./mono_nunit_test.sh
