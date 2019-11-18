@@ -1,16 +1,15 @@
-# IO.Deliveree - the C# library for the Deliveree API
+# IO.Deliveree - the C# library for the Deliveree SDK
 
-With Deliveree API, developers can integrate our on-demand local delivery platform into their applications. The API is designed for developers to check prices, book an immediate or scheduled delivery and follow updates until delivery completion.
+With Deliveree SDK, developers can integrate our on-demand local delivery platform into their applications. The SDK is designed for developers to check prices, book an immediate or scheduled delivery and follow updates until delivery completion.
 
 This C# SDK is develop by TMA Team:
 
-- API version: 1.0.0
 - SDK version: 1.0.0
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
 - .NET 4.5 or later
-- .NET CORE 2.0 or later
+- .NET CORE 2.1.13 or later
 
 <a name="dependencies"></a>
 ## Dependencies
