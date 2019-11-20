@@ -4,5 +4,5 @@
 ## Documentation for SDK
 
  - [Csharp](/SDK_Csharp/README.md)
- - [PHP](/SDK_PHP/deliveree-php-sdk/deliveree-sdk/README.md)
+ - [PHP](/SDK_PHP/deliveree-php-sdk/README.md)
 
