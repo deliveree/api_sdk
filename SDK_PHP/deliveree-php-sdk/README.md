@@ -5,8 +5,9 @@ With Deliveree SDK, developers can integrate our on-demand local delivery platfo
 
 ## Requirements
 
-- PHP 5.5 and later
-- Composer
+- More info [PHP 5.5 and later](https://www.php.net)
+
+- [Composer](https://getcomposer.org)
 ````
     // More example look at dist folder
 ````

@@ -1,0 +1,19 @@
+{
+  "name": "deliveree-sdk",
+  "version": "1.0.0",
+  "description": "With Deliveree SDK, developers can integrate our on-demand local delivery platform into their applications. The SDK is designed for developers to check prices, book an immediate or scheduled delivery and follow updates until delivery completion.",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {
+  },
+  "browser": {
+    "fs": false
+  },
+  "dependencies": {
+    "querystring": "0.2.0",
+    "superagent": "3.7.0"
+  },
+  "devDependencies": {
+    "browserify": "^16.5.0"
+  }
+}

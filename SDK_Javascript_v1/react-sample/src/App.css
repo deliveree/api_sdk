@@ -1,0 +1,41 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.api-wrapper {
+  width: 80vw;
+  margin-bottom: 50px;
+}
+.App-link {
+  color: #09d3ac;
+}
+.item {
+  padding: 20px 0;
+}
+.item p {
+  background: #DDd;
+  color: #7f00ff;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 25px;
+  cursor: pointer;
+}
+button:hover {
+  color: #7f00ff;
+}
