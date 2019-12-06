@@ -1,0 +1,42 @@
+<hr/>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="header">
+      <h2>
+       Cancel booking delivery
+      </h2>
+
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <% if @err %>
+      <div class="alert alert-warning" role="alert">
+        <%=@err %>
+      </div>
+    <%end %>
+    <% if @result %>
+      <div class="alert alert-warning" role="alert">
+        <%=@result %>
+      </div>
+    <%end %>
+
+  </div>
+  <div class="col-lg-6 code">
+  <pre><code>
+    deliveree = Deliveree::DelivereeApi.new
+    booking_id= 10 # Id of Delivery with status is not COMPLETED or CANCELED
+    begin
+      deliveree.cancel_booking(booking_id) # With no return data and status
+      #deliveree.cancel_booking_with_http_info(booking_id) # Return full response status
+    rescue Deliveree::ApiError => e
+      puts "exception #{e}"
+    end
+</code></pre>
+  </div>
+
+</div>
+
+
+
+
+

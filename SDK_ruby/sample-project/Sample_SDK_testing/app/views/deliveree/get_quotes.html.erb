@@ -1,0 +1,65 @@
+<hr/>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="header">
+      <h2>
+        Get Quotes List
+      </h2>
+
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <table class="table">
+      <tr>
+        <td>Vehicle type ID</td>
+        <td>Name</td>
+        <td>Total Fees</td>
+        <td>Currency</td>
+      </tr>
+      <%
+        @result.data.each do |result|
+      %>
+        <tr>
+          <td>
+            <%=result.vehicle_type_id %>
+          </td>
+          <td>
+            <%=result.vehicle_type_name %>
+          </td>
+          <td>
+            <%=result.total_fees %>
+          </td>
+          <td>
+            <%=result.currency %>
+          </td>
+        </tr>
+      <%end %>
+    </table>
+
+  </div>
+  <div class="col-lg-6 code">
+  <pre><code>
+    deliveree = Deliveree::DelivereeApi.new
+    location = {
+      address:
+        "Jl. Sultan Iskandar Muda No.21, Arteri Pondok Indah, Pd. Pinang, Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta, Indonesia",
+      latitude: -6.2608232,
+      longitude: 106.7884168
+    }
+
+    body = Deliveree::Quote.new({time_type: "now", locations: [Deliveree::Location.new( location)]})
+
+    begin
+      @result = deliveree.deliveries_get_quote(body)
+    rescue Deliveree::ApiError => e
+      puts "exception #{e}"
+    end
+</code></pre>
+  </div>
+
+</div>
+
+
+
+
+

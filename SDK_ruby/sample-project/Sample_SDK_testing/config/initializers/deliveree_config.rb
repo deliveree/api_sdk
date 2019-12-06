@@ -1,0 +1,2 @@
+class DelivereeConfig
+end

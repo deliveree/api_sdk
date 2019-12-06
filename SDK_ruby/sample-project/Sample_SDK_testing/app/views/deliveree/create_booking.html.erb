@@ -1,0 +1,99 @@
+<hr/>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="header">
+      <h2>
+        Create Booking delivery
+      </h2>
+
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <table class="table">
+      <tr>
+        <td>Delivery ID</td>
+        <td>Customer ID</td>
+        <td>Company ID</td>
+        <td>Time type</td>
+        <td>Note</td>
+        <td>Total Fees</td>
+        <td>Currency</td>
+      </tr>
+           <tr>
+          <td>
+            <%=@deliver.id %>
+          </td>
+          <td>
+            <%=@deliver.customer_id %>
+          </td>
+          <td>
+            <%=@deliver.company_id %>
+          </td>
+          <td>
+            <%=@deliver.time_type %>
+          </td>
+          <td>
+            <%=@deliver.note %>
+          </td>
+          <td>
+            <%=@deliver.total_fees %>
+          </td>
+          <td>
+            <%=@deliver.currency %>
+          </td>
+        </tr>
+    </table>
+
+  </div>
+  <div class="col-lg-6 code">
+  <pre><code>
+    deliveree = Deliveree::DelivereeApi.new
+    tDate = DateTime.now.to_s
+    delivery = {
+     vehicle_type_id: 62,
+     note: "Testing - API Default Fragile item that needs good care Welcome.",
+     time_type: "schedule",
+     pickup_time: "2016-05-13T09:51:16+07:00",
+     job_order_number: "66666",
+     locations: [
+       {
+         address:
+           tDate +
+             "Jl. Sultan Iskandar Muda No.21, Arteri Pondok Indah, Pd. Pinang, Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta, Indonesia",
+         latitude: -6.2608232,
+         longitude: 106.7884168,
+         recipient_name: "Duke",
+         recipient_phone: "+84903398399",
+         note: "Second floor, room 609"
+       },
+       {
+         address:
+           tDate +
+             "Gedung Inti Sentra, Jl. Taman Kemang, RT.14/RW.1, Bangka, Mampang Prpt., Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta, Indonesia",
+         latitude: -6.2608232,
+         longitude: 106.7884168,
+         recipient_name: "Nam",
+         recipient_phone: "+84903856534",
+         note: "First floor, right room.",
+         need_cod: true,
+         cod_note: "You need to get money from Nam",
+         cod_invoice_fees: 5000,
+         need_pod: true,
+         pod_note: "You need to ..."
+       }
+     ]
+   }
+    begin
+      @rs = deliveree.deliveries_post(delivery)
+    rescue Deliveree::ApiError => e
+      puts "exception #{e}"
+    end
+</code></pre>
+  </div>
+
+</div>
+
+
+
+
+
