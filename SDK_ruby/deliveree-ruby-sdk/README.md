@@ -1,6 +1,6 @@
-# Deliveree SDK guidelines
+# Deliveree SDK guideline
 
-Deliveree - the Ruby gem for the Deliveree SDK
+Deliveree - The Ruby gem for the Deliveree SDK
 
 With Deliveree SDK, developers can integrate our on-demand local delivery platform into their applications. The SDK is designed for developers to check prices, book an immediate or scheduled delivery and follow updates until delivery completion.
 
@@ -9,18 +9,25 @@ With Deliveree SDK, developers can integrate our on-demand local delivery platfo
 ## Installation
 
 ### Install the gem locally:
+Please follow 2 step bellow.
 
-```shell
-gem install ./deliveree_sdk-1.0.0.gem
+1 . Adding SDK into Gemfile in your project follow command bellow.
+```shell script
+    # Require sdk into Gemfile
+    gem 'deliveree_sdk', '~> 1.0.0'
 ```
-(for development, run `gem install --dev ./deliveree_sdk-1.0.0.gem` to install the development dependencies)
+2 . Run command install `deliveree_sdk` from your local directory. Make sure this SDK available in your computer.
+```shell
+    #Install sdk from local compute in to your project
+    gem install ~/Local_path/deliveree_sdk-1.0.0.gem
+```
 
 ## Getting Started
 
 Please follow the [installation](#installation) procedure and then run the following code:
 
 ### Application config
-Adding the code bellow in your application.rb file
+Adding the code bellow in your `Project/config/application.rb` file.
 ```ruby
 # Load the gem in your application
 require 'deliveree_sdk'
@@ -33,7 +40,7 @@ end
 
 ```
 
-# **1. Cancel booking api**
+# **1. Cancel booking**
 > cancel_booking(id, opts)
 
 ### Example
@@ -58,13 +65,13 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **id** | **Integer**| ID of delivery | 
- **accept_language** | **String**|  | [optional] [default to en]
+ **accept_language** | **String**| en
 
 ### Return type
 
 nil (empty response body)
 
-# **2. Deliveries get quote api**
+# **2. Deliveries get quote**
 > ResponseWithData deliveries_get_quote(body, opts)
 
 ### Example
@@ -78,8 +85,8 @@ opts = {
 }
 
 begin
-  result = api_instance.deliveries_get_quote(body, opts)
-  p result
+  @result = api_instance.deliveries_get_quote(body, opts)
+  puts @result
 rescue Deliveree::ApiError => e
   puts "Exception when calling DelivereeApi->deliveries_get_quote: #{e}"
 end
@@ -90,10 +97,10 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**Quote**](Quote.md)|  | 
- **accept_language** | **String**|  | [optional] [default to en]
+ **accept_language** | **String**| en |
 
 
-# **3. Create delivery booking api**
+# **3. Create delivery booking**
 > ResponseDefault deliveries_post(body, opts)
 
 ### Example
@@ -108,8 +115,8 @@ opts = {
 }
 
 begin
-  result = api_instance.deliveries_post(body, opts)
-  p result
+  @result = api_instance.deliveries_post(body, opts)
+  puts @result
 rescue Deliveree::ApiError => e
   puts "Exception when calling DelivereeApi->deliveries_post: #{e}"
 end
@@ -120,7 +127,7 @@ end
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**Delivery**](Delivery.md)|  | 
- **accept_language** | **String**|  | [optional] [default to en]
+ **accept_language** | **String**|  |
 
 
 ## Documentation for API Endpoints

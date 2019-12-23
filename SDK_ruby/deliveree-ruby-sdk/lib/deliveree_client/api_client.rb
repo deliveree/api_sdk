@@ -25,7 +25,7 @@ module Deliveree
     # @option config [Configuration] Configuration for initializing the object, default to Configuration.default
     def initialize(config = Configuration.default)
       @config = config
-      @user_agent = "Deliveree SKD ruby version"
+      @user_agent = "Deliveree SDK ruby version"
       @default_headers = {
         'Content-Type' => 'application/json',
         'User-Agent' => @user_agent

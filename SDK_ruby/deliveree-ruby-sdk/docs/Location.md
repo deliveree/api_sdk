@@ -3,11 +3,11 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**address** | **String** |  | [optional] 
-**latitude** | **Float** |  | [optional] 
-**longitude** | **Float** |  | [optional] 
-**recipient_name** | **String** |  | [optional] 
-**recipient_phone** | **String** |  | [optional] 
+**address** | **String** |  | [required] 
+**latitude** | **Float** |  | [required] 
+**longitude** | **Float** |  | [required] 
+**recipient_name** | **String** |  | [required] 
+**recipient_phone** | **String** |  | [required] 
 **note** | **String** |  | [optional] 
 **need_cod** | **BOOLEAN** |  | [optional] 
 **cod_note** | **String** |  | [optional] 

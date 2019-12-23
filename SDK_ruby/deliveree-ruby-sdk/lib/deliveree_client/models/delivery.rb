@@ -72,17 +72,12 @@ module Deliveree
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      if attributes.has_key?(:'vehicle_type_id')
-        self.vehicle_type_id = attributes[:'vehicle_type_id']
-      end
+      # To make sure attribute mandatory
+      self.vehicle_type_id = attributes[:'vehicle_type_id']
+      self.time_type = attributes[:'time_type']
 
       if attributes.has_key?(:'note')
         self.note = attributes[:'note']
-      end
-
-      if attributes.has_key?(:'time_type')
-        self.time_type = attributes[:'time_type']
       end
 
       if attributes.has_key?(:'pickup_time')

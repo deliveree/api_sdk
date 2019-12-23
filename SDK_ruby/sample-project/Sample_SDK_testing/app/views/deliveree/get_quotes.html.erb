@@ -5,7 +5,6 @@
       <h2>
         Get Quotes List
       </h2>
-
     </div>
   </div>
   <div class="col-lg-6">
@@ -16,22 +15,28 @@
         <td>Total Fees</td>
         <td>Currency</td>
       </tr>
-      <%
-        @result.data.each do |result|
-      %>
+      <% if @result.present? %>
+        <%
+          @result.data.each do |result|
+        %>
+          <tr>
+            <td>
+              <%=result.vehicle_type_id %>
+            </td>
+            <td>
+              <%=result.vehicle_type_name %>
+            </td>
+            <td>
+              <%=result.total_fees %>
+            </td>
+            <td>
+              <%=result.currency %>
+            </td>
+          </tr>
+        <%end %>
+      <%else %>
         <tr>
-          <td>
-            <%=result.vehicle_type_id %>
-          </td>
-          <td>
-            <%=result.vehicle_type_name %>
-          </td>
-          <td>
-            <%=result.total_fees %>
-          </td>
-          <td>
-            <%=result.currency %>
-          </td>
+          <td colspan="4"><%=@error %></td>
         </tr>
       <%end %>
     </table>

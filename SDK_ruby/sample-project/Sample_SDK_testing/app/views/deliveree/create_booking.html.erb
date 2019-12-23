@@ -19,7 +19,8 @@
         <td>Total Fees</td>
         <td>Currency</td>
       </tr>
-           <tr>
+        <tr>
+        <% if @deliver.present? %>
           <td>
             <%=@deliver.id %>
           </td>
@@ -41,6 +42,10 @@
           <td>
             <%=@deliver.currency %>
           </td>
+        <%else %>
+          <td colspan="8"> <%=@error %></td>
+        <%end %>
+
         </tr>
     </table>
 

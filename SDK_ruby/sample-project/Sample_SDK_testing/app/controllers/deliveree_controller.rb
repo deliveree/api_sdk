@@ -16,6 +16,7 @@ class DelivereeController < ApplicationController
     begin
       @result = deliveree.deliveries_get_quote(body)
     rescue Deliveree::ApiError => e
+      @error = e
       puts "exception #{e}"
     end
   end
@@ -61,15 +62,16 @@ class DelivereeController < ApplicationController
       @deliver = deliveree.deliveries_post(delivery)
       puts @deliver
     rescue Deliveree::ApiError => e
+      @error = e
       puts "exception #{e}"
     end
   end
 
   def cancel_booking
     deliveree = Deliveree::DelivereeApi.new
-    booking_id = 17367
+    booking_id = 17463
     begin
-      @result = deliveree.cancel_booking_with_http_info(booking_id)
+      @result = deliveree.cancel_booking(booking_id)
       puts @result
     rescue Deliveree::ApiError => e
       puts "exception #{e}"

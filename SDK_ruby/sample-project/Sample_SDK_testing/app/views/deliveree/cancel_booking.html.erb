@@ -27,7 +27,6 @@
     booking_id= 10 # Id of Delivery with status is not COMPLETED or CANCELED
     begin
       deliveree.cancel_booking(booking_id) # With no return data and status
-      #deliveree.cancel_booking_with_http_info(booking_id) # Return full response status
     rescue Deliveree::ApiError => e
       puts "exception #{e}"
     end

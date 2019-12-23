@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6854cdbb-6929-42c9-aa3f-7e568b36b27d" name="Default Changelist" comment="" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,26 +26,26 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="1U90fsOznvb1BCOo90pcP7uSreP" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
     <property name="Ruby.ViewRefParam.DefaultExtension" value="html.erb" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Rails.Development: sample2">
     <configuration name="Development: sample2" type="RailsRunConfigurationType" factoryName="Rails">
@@ -117,7 +116,7 @@
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_VERBOSE" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TESTOPTS" VALUE="" />
       <method v="2" />
     </configuration>
     <configuration name="test: sample2" type="RakeRunConfigurationType" factoryName="Rake">
@@ -143,9 +142,21 @@
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TRACE" VALUE="false" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_DRYRUN" VALUE="false" />
       <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_PREREQS" VALUE="false" />
-      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_VERBOSE" VALUE="" />
+      <RAKE_RUN_CONFIG_SETTINGS_ID NAME="RAKE_TASK_OPTION_TESTOPTS" VALUE="" />
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" RAKE_SPRING_PRE_LOADER_OPTION="true" RAILS_SPRING_PRE_LOADER_OPTION="true" />
   <component name="SvnConfiguration">
@@ -160,13 +171,103 @@
       <updated>1574753609056</updated>
       <workItem from="1574753610173" duration="8588000" />
       <workItem from="1574824086082" duration="7723000" />
+      <workItem from="1577086177787" duration="6946000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="WindowStateProjectService">
+    <state x="857" y="267" width="757" height="535" key="#xdebugger.evaluate" timestamp="1577094679374">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="857" y="267" width="757" height="535" key="#xdebugger.evaluate/67.27.1853.1053@67.27.1853.1053" timestamp="1577094679374" />
+    <state width="480" height="466" key="DebuggerActiveHint" timestamp="1577088624030">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="480" height="466" key="DebuggerActiveHint/67.27.1853.1053@67.27.1853.1053" timestamp="1577088624030" />
+    <state width="1799" height="395" key="GridCell.Tab.0.bottom" timestamp="1577095037843">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="395" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1577095037843" />
+    <state width="1799" height="395" key="GridCell.Tab.0.center" timestamp="1577095037841">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="395" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1577095037841" />
+    <state width="1799" height="395" key="GridCell.Tab.0.left" timestamp="1577095037840">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="395" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1577095037840" />
+    <state width="1799" height="395" key="GridCell.Tab.0.right" timestamp="1577095037842">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="395" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1577095037842" />
+    <state width="1799" height="395" key="GridCell.Tab.1.bottom" timestamp="1577095037847">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="395" key="GridCell.Tab.1.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1577095037847" />
+    <state width="1799" height="395" key="GridCell.Tab.1.center" timestamp="1577095037845">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="395" key="GridCell.Tab.1.center/67.27.1853.1053@67.27.1853.1053" timestamp="1577095037845" />
+    <state width="1799" height="395" key="GridCell.Tab.1.left" timestamp="1577095037844">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="395" key="GridCell.Tab.1.left/67.27.1853.1053@67.27.1853.1053" timestamp="1577095037844" />
+    <state width="1799" height="395" key="GridCell.Tab.1.right" timestamp="1577095037846">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="395" key="GridCell.Tab.1.right/67.27.1853.1053@67.27.1853.1053" timestamp="1577095037846" />
+    <state width="1799" height="318" key="GridCell.Tab.3.bottom" timestamp="1577087016642">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="318" key="GridCell.Tab.3.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1577087016642" />
+    <state width="1799" height="318" key="GridCell.Tab.3.center" timestamp="1577087016640">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="318" key="GridCell.Tab.3.center/67.27.1853.1053@67.27.1853.1053" timestamp="1577087016640" />
+    <state width="1799" height="318" key="GridCell.Tab.3.left" timestamp="1577087016639">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="318" key="GridCell.Tab.3.left/67.27.1853.1053@67.27.1853.1053" timestamp="1577087016639" />
+    <state width="1799" height="318" key="GridCell.Tab.3.right" timestamp="1577087016641">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="1799" height="318" key="GridCell.Tab.3.right/67.27.1853.1053@67.27.1853.1053" timestamp="1577087016641" />
+    <state width="926" height="527" key="XDebugger.FullValuePopup" timestamp="1577094531305">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state width="926" height="527" key="XDebugger.FullValuePopup/67.27.1853.1053@67.27.1853.1053" timestamp="1577094531305" />
+    <state x="637" y="299" width="704" height="528" key="find.popup" timestamp="1577094000040">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="637" y="299" width="704" height="528" key="find.popup/67.27.1853.1053@67.27.1853.1053" timestamp="1577094000040" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/app/views/deliveree/get_quotes.html.erb</url>
+          <line>17</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="ruby-line">
+          <url>file://$PROJECT_DIR$/app/views/deliveree/get_quotes.html.erb</url>
+          <line>19</line>
+          <properties myBlockOrdinal="-1">
+            <option name="block-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/sample2@Development__sample2.rcov" NAME="Development: sample2 Coverage Results" MODIFIED="1574829415985" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sample2" />
+    <SUITE FILE_PATH="coverage/Sample_SDK_testing@Development__sample2.rcov" NAME="Development: sample2 Coverage Results" MODIFIED="1577095034928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="sample2" />
   </component>
 </project>

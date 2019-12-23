@@ -76,17 +76,10 @@ module Deliveree
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'address')
-        self.address = attributes[:'address']
-      end
-
-      if attributes.has_key?(:'latitude')
-        self.latitude = attributes[:'latitude']
-      end
-
-      if attributes.has_key?(:'longitude')
-        self.longitude = attributes[:'longitude']
-      end
+      # To make sure attribute mandatory
+      self.address = attributes[:'address']
+      self.latitude = attributes[:'latitude']
+      self.longitude = attributes[:'longitude']
 
       if attributes.has_key?(:'recipient_name')
         self.recipient_name = attributes[:'recipient_name']
