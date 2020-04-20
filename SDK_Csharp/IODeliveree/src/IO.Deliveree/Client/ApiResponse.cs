@@ -15,7 +15,7 @@ namespace IO.Deliveree.Client
     /// <summary>
     /// API Response
     /// </summary>
-        public class ApiResponse<T>
+    public class ApiResponse
     {
         /// <summary>
         /// Gets or sets the status code (HTTP status code)
@@ -28,6 +28,20 @@ namespace IO.Deliveree.Client
         /// </summary>
         /// <value>HTTP headers</value>
         public IDictionary<string, string> Headers { get; private set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiResponse&lt;T&gt;" /> class.
+        /// </summary>
+        /// <param name="statusCode">HTTP status code.</param>
+        /// <param name="headers">HTTP headers.</param>
+        public ApiResponse(int statusCode, IDictionary<string, string> headers)
+        {
+            StatusCode = statusCode;
+            Headers = headers;
+        }
+
+    }
+        public class ApiResponse<T> : ApiResponse
+    {
 
         /// <summary>
         /// Gets or sets the data (parsed HTTP body)
@@ -41,11 +55,9 @@ namespace IO.Deliveree.Client
         /// <param name="statusCode">HTTP status code.</param>
         /// <param name="headers">HTTP headers.</param>
         /// <param name="data">Data (parsed HTTP body)</param>
-        public ApiResponse(int statusCode, IDictionary<string, string> headers, T data)
+        public ApiResponse(int statusCode, IDictionary<string, string> headers, T data) : base (statusCode, headers)
         {
-            this.StatusCode= statusCode;
-            this.Headers = headers;
-            this.Data = data;
+            Data = data;
         }
 
     }

@@ -8,6 +8,7 @@ using System.Web.Mvc.Ajax;
 using IO.Deliveree.Api;
 using IO.Deliveree.Client;
 using IO.Deliveree.Model;
+using Newtonsoft.Json.Linq;
 
 namespace AspNetFramworkEx.Controllers
 {
@@ -73,7 +74,7 @@ namespace AspNetFramworkEx.Controllers
 
             try
             {
-                ApiResponse<Object> result = apiInstance.DeliveriesPostWithHttpInfo(body);
+                ApiResponse<JObject> result = apiInstance.DeliveriesPostWithHttpInfo(body);
                 return result.Data.ToString();
             }
             catch (Exception e)
@@ -105,7 +106,7 @@ namespace AspNetFramworkEx.Controllers
 
             try
             {
-                ApiResponse<Object> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
+                ApiResponse<JObject> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
 
                 return result.Data.ToString();
             }
@@ -126,7 +127,7 @@ namespace AspNetFramworkEx.Controllers
             var apiInstance = new DelivereeApi();
             try
             {
-                ApiResponse<Object> obj = apiInstance.CancelBookingWithHttpInfo(id);
+                ApiResponse obj = apiInstance.CancelBookingWithHttpInfo(id);
                 return obj.StatusCode.ToString();
             }
             catch (Exception ex)

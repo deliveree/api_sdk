@@ -8,6 +8,8 @@ using IO.Deliveree.Client;
 using IO.Deliveree.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace WebAspNetCore.Pages
 {
@@ -68,7 +70,7 @@ namespace WebAspNetCore.Pages
 
             try
             {
-                ApiResponse<Object> result = apiInstance.DeliveriesPostWithHttpInfo(body);
+                ApiResponse<JObject> result = apiInstance.DeliveriesPostWithHttpInfo(body);
                 return result.Data.ToString();
 
             }
@@ -101,7 +103,7 @@ namespace WebAspNetCore.Pages
 
             try
             {
-                ApiResponse<object> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
+                ApiResponse<JObject> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
 
                 return result.Data.ToString();
             }
@@ -123,8 +125,8 @@ namespace WebAspNetCore.Pages
             var apiInstance = new DelivereeApi();
             try
             {
-                ApiResponse<object> obj = apiInstance.CancelBookingWithHttpInfo(id);
-                return obj.Data.ToString();
+                ApiResponse obj = apiInstance.CancelBookingWithHttpInfo(id);
+                return obj.StatusCode.ToString();
 
             }
             catch (Exception ex)

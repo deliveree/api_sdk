@@ -72,7 +72,7 @@ namespace IO.Deliveree.Client
         /// with default configuration.
         /// </summary>
         /// <param name="basePath">The base path.</param>
-        public ApiClient(String basePath = "https://api.sandbox.deliveree.com/public_api/v1")
+        public ApiClient(string basePath = "https://api.sandbox.deliveree.com/public_api/v1")
         {
            if (String.IsNullOrEmpty(basePath))
                 throw new ArgumentException("basePath cannot be empty");
@@ -107,10 +107,10 @@ namespace IO.Deliveree.Client
 
         // Creates and sets up a RestRequest prior to a call.
         private RestRequest PrepareRequest(
-            String path, RestSharp.Method method, List<KeyValuePair<String, String>> queryParams, Object postBody,
-            Dictionary<String, String> headerParams, Dictionary<String, String> formParams,
-            Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
-            String contentType)
+            string path, RestSharp.Method method, List<KeyValuePair<string, string>> queryParams, object postBody,
+            Dictionary<string, string> headerParams, Dictionary<string, string> formParams,
+            Dictionary<string, FileParameter> fileParams, Dictionary<string, string> pathParams,
+            string contentType)
         {
             var request = new RestRequest(path, method);
 
@@ -157,11 +157,11 @@ namespace IO.Deliveree.Client
         /// <param name="pathParams">Path parameters.</param>
         /// <param name="contentType">Content Type of the request</param>
         /// <returns>Object</returns>
-        public Object CallApi(
-            String path, RestSharp.Method method, List<KeyValuePair<String, String>> queryParams, Object postBody,
-            Dictionary<String, String> headerParams, Dictionary<String, String> formParams,
-            Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
-            String contentType)
+        public IRestResponse CallApi(
+            string path, RestSharp.Method method, List<KeyValuePair<string, string>> queryParams, object postBody,
+            Dictionary<string, string> headerParams, Dictionary<string, string> formParams,
+            Dictionary<string, FileParameter> fileParams, Dictionary<string, string> pathParams,
+            string contentType)
         {
             var request = PrepareRequest(
                 path, method, queryParams, postBody, headerParams, formParams, fileParams,
@@ -177,7 +177,7 @@ namespace IO.Deliveree.Client
             var response = RestClient.Execute(request);
             InterceptResponse(request, response);
 
-            return (Object) response;
+            return response;
         }
         /// <summary>
         /// Makes the asynchronous HTTP request.
@@ -192,11 +192,11 @@ namespace IO.Deliveree.Client
         /// <param name="pathParams">Path parameters.</param>
         /// <param name="contentType">Content type.</param>
         /// <returns>The Task instance.</returns>
-        public async System.Threading.Tasks.Task<Object> CallApiAsync(
-            String path, RestSharp.Method method, List<KeyValuePair<String, String>> queryParams, Object postBody,
-            Dictionary<String, String> headerParams, Dictionary<String, String> formParams,
-            Dictionary<String, FileParameter> fileParams, Dictionary<String, String> pathParams,
-            String contentType)
+        public async System.Threading.Tasks.Task<IRestResponse> CallApiAsync(
+            string path, RestSharp.Method method, List<KeyValuePair<string, string>> queryParams, object postBody,
+            Dictionary<string, string> headerParams, Dictionary<string, string> formParams,
+            Dictionary<string, FileParameter> fileParams, Dictionary<string, string> pathParams,
+            string contentType)
         {
             var request = PrepareRequest(
                 path, method, queryParams, postBody, headerParams, formParams, fileParams,
@@ -204,7 +204,7 @@ namespace IO.Deliveree.Client
             InterceptRequest(request);
             var response = await RestClient.ExecuteTaskAsync(request);
             InterceptResponse(request, response);
-            return (Object)response;
+            return response;
         }
 
         /// <summary>
@@ -273,12 +273,13 @@ namespace IO.Deliveree.Client
         /// <param name="response">The HTTP response.</param>
         /// <param name="type">Object type.</param>
         /// <returns>Object representation of the JSON string.</returns>
-        public object Deserialize(IRestResponse response, Type type)
+        public T Deserialize<T>(IRestResponse response)
         {
             IList<Parameter> headers = response.Headers;
+            var type = typeof(T);
             if (type == typeof(byte[])) // return byte array
             {
-                return response.RawBytes;
+                return ConvertGenericType<T>(response.RawBytes);
             }
 
             // TODO: ? if (type.IsAssignableFrom(typeof(Stream)))
@@ -297,28 +298,27 @@ namespace IO.Deliveree.Client
                         {
                             string fileName = filePath + SanitizeFilename(match.Groups[1].Value.Replace("\"", "").Replace("'", ""));
                             File.WriteAllBytes(fileName, response.RawBytes);
-                            return new FileStream(fileName, FileMode.Open);
+                            return ConvertGenericType<T>(new FileStream(fileName, FileMode.Open));
                         }
                     }
                 }
-                var stream = new MemoryStream(response.RawBytes);
-                return stream;
+                return ConvertGenericType<T>(new MemoryStream(response.RawBytes));
             }
 
-            if (type.Name.StartsWith("System.Nullable`1[[System.DateTime")) // return a datetime object
+            if (type == typeof(DateTime?)) // return a datetime object
             {
-                return DateTime.Parse(response.Content,  null, System.Globalization.DateTimeStyles.RoundtripKind);
+                return ConvertGenericType<T>(DateTime.Parse(response.Content,  null, System.Globalization.DateTimeStyles.RoundtripKind));
             }
 
             if (type == typeof(String) || type.Name.StartsWith("System.Nullable")) // return primitive type
             {
-                return ConvertType(response.Content, type);
+                return ConvertGenericType<T>(response.Content);
             }
 
             // at this point, it must be a model (json)
             try
             {
-                return JsonConvert.DeserializeObject(response.Content, type, serializerSettings);
+                return JsonConvert.DeserializeObject<T>(response.Content, serializerSettings);
             }
             catch (Exception e)
             {
@@ -331,7 +331,7 @@ namespace IO.Deliveree.Client
         /// </summary>
         /// <param name="obj">Object.</param>
         /// <returns>JSON string.</returns>
-        public String Serialize(object obj)
+        public string Serialize(object obj)
         {
             try
             {
@@ -353,7 +353,7 @@ namespace IO.Deliveree.Client
         /// </summary>
         /// <param name="mime">MIME</param>
         /// <returns>Returns True if MIME type is json.</returns>
-        public bool IsJsonMime(String mime)
+        public bool IsJsonMime(string mime)
         {
             var jsonRegex = new Regex("(?i)^(application/json|[^;/ \t]+/[^;/ \t]+[+]json)[ \t]*(;.*)?$");
             return mime != null && (jsonRegex.IsMatch(mime) || mime.Equals("application/json-patch+json"));
@@ -366,7 +366,7 @@ namespace IO.Deliveree.Client
         /// </summary>
         /// <param name="contentTypes">The Content-Type array to select from.</param>
         /// <returns>The Content-Type header to use.</returns>
-        public String SelectHeaderContentType(String[] contentTypes)
+        public string SelectHeaderContentType(string[] contentTypes)
         {
             if (contentTypes.Length == 0)
                 return "application/json";
@@ -387,7 +387,7 @@ namespace IO.Deliveree.Client
         /// </summary>
         /// <param name="accepts">The accepts array to select from.</param>
         /// <returns>The Accept header to use.</returns>
-        public String SelectHeaderAccept(String[] accepts)
+        public string SelectHeaderAccept(string[] accepts)
         {
             if (accepts.Length == 0)
                 return null;
@@ -395,7 +395,7 @@ namespace IO.Deliveree.Client
             if (accepts.Contains("application/json", StringComparer.OrdinalIgnoreCase))
                 return "application/json";
 
-            return String.Join(",", accepts);
+            return string.Join(",", accepts);
         }
 
         /// <summary>
@@ -412,11 +412,10 @@ namespace IO.Deliveree.Client
         /// Dynamically cast the object into target type.
         /// </summary>
         /// <param name="fromObject">Object to be casted</param>
-        /// <param name="toObject">Target type</param>
         /// <returns>Casted object</returns>
-        public static dynamic ConvertType(dynamic fromObject, Type toObject)
+        public static T ConvertGenericType<T>(dynamic fromObject)
         {
-            return Convert.ChangeType(fromObject, toObject);
+            return (T)Convert.ChangeType(fromObject, typeof(T));
         }
 
         /// <summary>

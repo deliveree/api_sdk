@@ -5,6 +5,7 @@ using IO.Deliveree.Api;
 using IO.Deliveree.Client;
 using IO.Deliveree.Model;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace ConsoleNetCore
 {
@@ -15,7 +16,7 @@ namespace ConsoleNetCore
             Configuration.Default.ApiKey.Add("Authorization", "ZrfYRQAzqMS9BH8QQhxa");
             //DeliveryGetQuotes();
             //AddDelivery();
-            CancelBooking(17246);
+            CancelBooking(17822);
         }
 
         /// <summary>
@@ -36,8 +37,8 @@ namespace ConsoleNetCore
                     new Location
                     {
                         Address = "TMA testing. Sultan Iskandar Muda No.21, Arteri Pondok Indah",
-                        Latitude = (double)-6.2608232,
-                        Longitude = (double)106.7884168,
+                        Latitude = -6.2608232,
+                        Longitude = 106.7884168,
                         RecipientName = "Justin",
                         RecipientPhone = "+84903398399",
                         Note = "Second floor, room 609"
@@ -45,8 +46,8 @@ namespace ConsoleNetCore
                     new Location
                     {
                         Address = "TMA testing Gedung Inti Sentra, Jl. Taman Kemang, RT.14/RW.1",
-                        Latitude = (double)-6.2608232,
-                        Longitude = (double)106.7884168,
+                        Latitude = -6.2608232,
+                        Longitude = 106.7884168,
                         RecipientName = "Tong",
                         RecipientPhone = "+84903398399",
                         Note = "Second floor, room 609",
@@ -60,7 +61,7 @@ namespace ConsoleNetCore
 
             try
             {
-                ApiResponse<Object> result = apiInstance.DeliveriesPostWithHttpInfo(body);
+                ApiResponse<JObject> result = apiInstance.DeliveriesPostWithHttpInfo(body);
                 Console.WriteLine(result.StatusCode);
             }
             catch (Exception e)
@@ -86,15 +87,15 @@ namespace ConsoleNetCore
                     new Location
                     {
                         Address = "Jl. Sultan Iskandar Muda No.21, Arteri Pondok Indah, Pd. Pinang, Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta, Indonesia",
-                        Latitude = (double)-6.2608232,
-                        Longitude = (double)106.7884168
+                        Latitude = -6.2608232,
+                        Longitude = 106.7884168
                     }
                 }
             };
 
             try
             {
-                ApiResponse<object> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
+                ApiResponse<JObject> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
                 Console.WriteLine(result.Data.ToString());
             }
             catch (Exception e)
@@ -115,7 +116,7 @@ namespace ConsoleNetCore
             var apiInstance = new DelivereeApi();
             try
             {
-                ApiResponse<Object> obj = apiInstance.CancelBookingWithHttpInfo(id);
+                ApiResponse obj = apiInstance.CancelBookingWithHttpInfo(id);
                 Console.Write(obj.StatusCode);
 
             }
