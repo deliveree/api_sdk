@@ -19,7 +19,8 @@ namespace IO.Deliveree.Api
     /// Represents a collection of functions to interact with the API endpoints
     /// </summary>
     public interface IDelivereeApi : IApiAccessor,
-        IDeliveriesGetQuotePostApi, IVehicleTypesGetApi, IFleetsGetApi,
+        IDeliveriesGetQuotePostApi, IVehicleTypesGetApi,
+        //IFleetsGetApi, IDeliveriesPutUpdateSubtotalApi,
         IDeliveriesPostApi, IDeliveriesGetApi, IDeliveriesGetListApi, ICancelBookingApi
     {
     }

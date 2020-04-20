@@ -14,9 +14,12 @@ namespace ConsoleNetCore
         static void Main(string[] args)
         {
             Configuration.Default.ApiKey.Add("Authorization", "ZrfYRQAzqMS9BH8QQhxa");
-            //DeliveryGetQuotes();
+            DeliveryGetQuotes();
+            //VehicleTypesGet();
             //AddDelivery();
-            CancelBooking(17822);
+            //DeliveryGetList();
+            //DeliveryGet(17848);
+            //CancelBooking(17844);
         }
 
         /// <summary>
@@ -61,7 +64,7 @@ namespace ConsoleNetCore
 
             try
             {
-                ApiResponse<JObject> result = apiInstance.DeliveriesPostWithHttpInfo(body);
+                ApiResponse<JToken> result = apiInstance.DeliveriesPostWithHttpInfo(body);
                 Console.WriteLine(result.StatusCode);
             }
             catch (Exception e)
@@ -73,6 +76,46 @@ namespace ConsoleNetCore
 
         }
 
+        /// <summary>
+        /// DeliveryGet
+        /// </summary>
+        public static void DeliveryGet(int id)
+        {
+            var apiInstance = new DelivereeApi();
+
+            try
+            {
+                ApiResponse<JToken> result = apiInstance.DeliveriesGetWithHttpInfo(id);
+                Console.WriteLine(result.Data);
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception: " + e.Message);
+            }
+
+            Console.ReadKey();
+
+        }
+
+        /// <summary>
+        /// DeliveryGetList 
+        /// </summary>
+        public static void DeliveryGetList()
+        {
+            var apiInstance = new DelivereeApi();
+
+            try
+            {
+                ApiResponse<JToken> result = apiInstance.DeliveriesGetListWithHttpInfo(1,1);
+                Console.WriteLine(result.Data.ToString());
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception: " + e.Message);
+            }
+
+            Console.ReadKey();
+        }
         /// <summary>
         /// DeliveriesGetQuotes 
         /// </summary>
@@ -95,7 +138,27 @@ namespace ConsoleNetCore
 
             try
             {
-                ApiResponse<JObject> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
+                ApiResponse<JToken> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
+                Console.WriteLine(result.Data.ToString());
+            }
+            catch (Exception e)
+            {
+                Debug.Print("Exception: " + e.Message);
+            }
+
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// VehicleTypesGet 
+        /// </summary>
+        public static void VehicleTypesGet()
+        {
+            var apiInstance = new DelivereeApi();
+
+            try
+            {
+                ApiResponse<JToken> result = apiInstance.VehicleTypesGetWithHttpInfo();
                 Console.WriteLine(result.Data.ToString());
             }
             catch (Exception e)

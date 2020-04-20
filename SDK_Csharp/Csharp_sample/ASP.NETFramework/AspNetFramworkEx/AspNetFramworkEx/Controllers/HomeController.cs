@@ -74,7 +74,7 @@ namespace AspNetFramworkEx.Controllers
 
             try
             {
-                ApiResponse<JObject> result = apiInstance.DeliveriesPostWithHttpInfo(body);
+                ApiResponse<JToken> result = apiInstance.DeliveriesPostWithHttpInfo(body);
                 return result.Data.ToString();
             }
             catch (Exception e)
@@ -106,7 +106,7 @@ namespace AspNetFramworkEx.Controllers
 
             try
             {
-                ApiResponse<JObject> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
+                ApiResponse<JToken> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
 
                 return result.Data.ToString();
             }

@@ -72,8 +72,6 @@ Contact: duke@deliveree.com
     <Compile Include="Api\DeliveriesGetListApi.cs" />
     <Compile Include="Api\DeliveriesGetQuotePostApi.cs" />
     <Compile Include="Api\DeliveriesPostApi.cs" />
-    <Compile Include="Api\DeliveriesPutUpdateSubtotalApi.cs" />
-    <Compile Include="Api\FleetsGetApi.cs" />
     <Compile Include="Api\VehicleTypesGetApi.cs" />
     <Compile Include="Client\ApiClient.cs" />
     <Compile Include="Client\ApiException.cs" />
