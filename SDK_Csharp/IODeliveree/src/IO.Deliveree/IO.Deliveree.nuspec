@@ -20,7 +20,7 @@
         <!-- The description can be used in package manager UI. Note that the
              nuget.org gallery uses information you add in the portal. -->
         <description>A SDK from Delieveree</description>
-        <copyright>TMA Team</copyright>
+        <copyright>Deliveree</copyright>
 
         <!-- Dependencies are automatically installed when the package is installed -->
         <dependencies>

@@ -5,7 +5,7 @@
  *
  * @category Class
  * @package  Deliveree\Client
- * @author   TMA Dev team
+ * @author   Deliveree
  * @link     https://deliveree.com
  */
 
@@ -30,7 +30,7 @@ use \Exception;
  *
  * @category Class
  * @package  Deliveree\Client
- * @author   TMA Dev team
+ * @author   Deliveree
  * @link     https://deliveree.com
  */
 class ApiException extends Exception

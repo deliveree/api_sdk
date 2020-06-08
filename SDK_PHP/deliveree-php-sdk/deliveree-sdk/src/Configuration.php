@@ -5,7 +5,7 @@
  *
  * @category Class
  * @package  Swagger\Client
- * @author   TMA Dev team
+ * @author   Deliveree
  * @link     https://deliveree.com
  */
 
@@ -28,7 +28,7 @@ namespace Deliveree\Client;
  *
  * @category Class
  * @package  Deliveree\Client
- * @author   TMA Dev team
+ * @author   Deliveree
  * @link     https://deliveree.com
  */
 class Configuration

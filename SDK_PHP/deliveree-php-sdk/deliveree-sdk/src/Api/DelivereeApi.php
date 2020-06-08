@@ -5,7 +5,7 @@
  *
  * @category Class
  * @package  Deliveree\Client
- * @author   TMA Dev team
+ * @author   Deliveree
  * @link     https://deliveree.com
  */
 
@@ -42,7 +42,7 @@ use RuntimeException;
  *
  * @category Class
  * @package  Deliveree\Client
- * @author   TMA Dev team
+ * @author   Deliveree
  * @link     https://deliveree.com
  */
 class DelivereeApi

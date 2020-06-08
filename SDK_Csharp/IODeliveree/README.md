@@ -2,8 +2,6 @@
 
 With Deliveree API, developers can integrate our on-demand local delivery platform into their applications. The API is designed for developers to check prices, book an immediate or scheduled delivery and follow updates until delivery completion.
 
-This C# SDK is develop by TMA Team:
-
 - API version: 1.0.0
 - SDK version: 1.0.0
 

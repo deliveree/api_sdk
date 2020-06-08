@@ -6,7 +6,7 @@
  *
  * @category Class
  * @package  Deliveree\Client
- * @author   TMA Dev team
+ * @author   Deliveree
  * @link     https://deliveree.com
  */
 
@@ -31,7 +31,7 @@ use \Deliveree\Client\ObjectSerializer;
  *
  * @category Class
  * @package  Swagger\Client
- * @author   TMA Dev team
+ * @author   Deliveree
  * @link     https://deliveree.com
  */
 class Location implements ModelInterface, ArrayAccess

@@ -49,7 +49,7 @@ namespace AspNetFramworkEx.Controllers
                 {
                     new Location
                     {
-                      Address = "TMA testing. Sultan Iskandar Muda No.21, Arteri Pondok Indah",
+                      Address = "Testing. Sultan Iskandar Muda No.21, Arteri Pondok Indah",
                       Latitude = (double)-6.2608232,
                       Longitude = (double)106.7884168,
                       RecipientName = "Justin",
@@ -58,7 +58,7 @@ namespace AspNetFramworkEx.Controllers
                     },
                     new Location
                     {
-                      Address = "TMA testing Gedung Inti Sentra, Jl. Taman Kemang, RT.14/RW.1",
+                      Address = "Testing Gedung Inti Sentra, Jl. Taman Kemang, RT.14/RW.1",
                       Latitude = (double)-6.2608232,
                       Longitude = (double)106.7884168,
                       RecipientName = "Tong",

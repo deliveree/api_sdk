@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.name        = "deliveree_sdk"
   s.version     = Deliveree::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["TMA Team"]
+  s.authors     = ["Deliveree"]
   s.email       = ["duke@deliveree.com"]
   s.homepage    = "http://deliveree.com"
   s.summary     = "Deliveree SDK "

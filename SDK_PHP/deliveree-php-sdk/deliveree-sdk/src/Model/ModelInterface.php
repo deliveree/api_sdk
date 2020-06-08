@@ -6,7 +6,7 @@
  *
  * @category Class
  * @package  Deliveree\Client\Model
- * @author   TMA Dev team
+ * @author   Deliveree
  * @link     https://deliveree.com
  */
 
@@ -28,7 +28,7 @@ namespace Deliveree\Client\Model;
  * Interface abstracting model access.
  *
  * @package Deliveree\Client\Model
- * @author  TMA Dev team
+ * @author  Deliveree
  */
 interface ModelInterface
 {
