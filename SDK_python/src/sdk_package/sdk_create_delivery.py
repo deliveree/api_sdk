@@ -1,3 +1,12 @@
+"""
+Deliveree SDK
+With Deliveree SDK, developers can integrate our on-demand local delivery
+platform into their applications. The SDK is designed for developers to
+create bookings.
+
+Contact: duke@deliveree.com
+"""
+
 import requests
 import json
 from utils import load_conf

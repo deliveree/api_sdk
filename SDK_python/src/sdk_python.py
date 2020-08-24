@@ -1,3 +1,13 @@
+"""
+Deliveree SDK
+With Deliveree SDK, developers can integrate our on-demand local delivery
+platform into their applications. The SDK is designed for developers to
+check prices, book an immediate or scheduled delivery and follow updates until
+delivery completion.
+
+Contact: duke@deliveree.com
+"""
+
 from sdk_package.sdk_quote import SDKquote
 from sdk_package.sdk_get_vehicle_type import SdkGetVehicleType
 from sdk_package.sdk_get_list_dlvr import SdkGetListDlvr
