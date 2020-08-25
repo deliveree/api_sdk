@@ -172,6 +172,9 @@ Class | Method | HTTP request | Description
 *DelivereeApi* | [**CancelBooking**](docs/DelivereeApi.md#cancelbooking) | **POST** /deliveries/{id}/cancel | 
 *DelivereeApi* | [**DeliveriesGetQuotePost**](docs/DelivereeApi.md#deliveriesgetquotepost) | **POST** /deliveries/get_quote | 
 *DelivereeApi* | [**DeliveriesPost**](docs/DelivereeApi.md#deliveriespost) | **POST** /deliveries | 
+*DelivereeApi* | [**DeliveriesGet**](docs/DelivereeApi.md#deliveriesget) | **GET** /deliveries/{id} | 
+*DelivereeApi* | [**DeliveriesGetList**](docs/DelivereeApi.md#deliveriesgetlist) | **GET** /deliveries | 
+*DelivereeApi* | [**VehicleTypesGet**](docs/DelivereeApi.md#vehicletypesget) | **GET** /vehicle_types | 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
