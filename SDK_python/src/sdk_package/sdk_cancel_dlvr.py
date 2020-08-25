@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 Deliveree SDK
 With Deliveree SDK, developers can integrate our on-demand local delivery
@@ -7,6 +8,8 @@ cancel bookings.
 Contact: duke@deliveree.com
 """
 
+=======
+>>>>>>> 852bf343d80c5dafa613398f3df5ed693b6d25fb
 import requests
 from utils import load_conf
 
