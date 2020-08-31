@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 Deliveree SDK
 With Deliveree SDK, developers can integrate our on-demand local delivery
@@ -9,8 +8,6 @@ delivery completion.
 Contact: duke@deliveree.com
 """
 
-=======
->>>>>>> 852bf343d80c5dafa613398f3df5ed693b6d25fb
 from sdk_package.sdk_quote import SDKquote
 from sdk_package.sdk_get_vehicle_type import SdkGetVehicleType
 from sdk_package.sdk_get_list_dlvr import SdkGetListDlvr
