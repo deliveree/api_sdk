@@ -86,6 +86,10 @@ Contact: duke@deliveree.com
     <Compile Include="Model\Location.cs" />
     <Compile Include="Model\PositionTracking.cs" />
     <Compile Include="Model\Quote.cs" />
+    <Compile Include="Model\Reponse\ListDeliveryResponse.cs" />
+    <Compile Include="Model\Reponse\DeliveryResponse.cs" />
+    <Compile Include="Model\Reponse\QuoteResponse.cs" />
+    <Compile Include="Model\Reponse\VehicleTypeReponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

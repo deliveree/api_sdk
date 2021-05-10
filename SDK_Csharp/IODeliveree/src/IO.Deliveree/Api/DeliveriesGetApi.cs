@@ -1,4 +1,5 @@
 ﻿using IO.Deliveree.Client;
+using IO.Deliveree.Model.Reponse;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace IO.Deliveree.Api
         /// <param name="id"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>JToken</returns>
-        JToken DeliveriesGet(int? id, string acceptLanguage = null);
+        DeliveryResponse DeliveriesGet(int? id, string acceptLanguage = null);
 
         /// <summary>
         /// 
@@ -32,7 +33,7 @@ namespace IO.Deliveree.Api
         /// <param name="id"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>ApiResponse of JToken</returns>
-        ApiResponse<JToken> DeliveriesGetWithHttpInfo(int? id, string acceptLanguage = null);
+        ApiResponse<DeliveryResponse> DeliveriesGetWithHttpInfo(int? id, string acceptLanguage = null);
         #endregion Synchronous Operations
 
         #region Asynchronous Operations
@@ -47,7 +48,7 @@ namespace IO.Deliveree.Api
         /// <param name="id"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of JToken</returns>
-        System.Threading.Tasks.Task<JToken> DeliveriesGetAsync(int? id, string acceptLanguage = null);
+        System.Threading.Tasks.Task<DeliveryResponse> DeliveriesGetAsync(int? id, string acceptLanguage = null);
 
         /// <summary>
         /// 
@@ -59,7 +60,7 @@ namespace IO.Deliveree.Api
         /// <param name="id"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of ApiResponse (JToken)</returns>
-        System.Threading.Tasks.Task<ApiResponse<JToken>> DeliveriesGetAsyncWithHttpInfo(int? id, string acceptLanguage = null);
+        System.Threading.Tasks.Task<ApiResponse<DeliveryResponse>> DeliveriesGetAsyncWithHttpInfo(int? id, string acceptLanguage = null);
 
         #endregion Asynchronous Operations
     }
@@ -111,7 +112,7 @@ namespace IO.Deliveree.Api
         /// <param name="id"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>JToken</returns>
-        public JToken DeliveriesGet(int? id, string acceptLanguage = null) =>
+        public DeliveryResponse DeliveriesGet(int? id, string acceptLanguage = null) =>
              DeliveriesGetWithHttpInfo(id, acceptLanguage).Data;
 
         /// <summary>
@@ -121,7 +122,7 @@ namespace IO.Deliveree.Api
         /// <param name="id"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>ApiResponse of JToken</returns>
-        public ApiResponse<JToken> DeliveriesGetWithHttpInfo(int? id, string acceptLanguage = null)
+        public ApiResponse<DeliveryResponse> DeliveriesGetWithHttpInfo(int? id, string acceptLanguage = null)
         {
             CreateDeliveriesGetParams(id, acceptLanguage,
             out string localVarPath, out Dictionary<string, string> localVarPathParams, out List<KeyValuePair<string, string>> localVarQueryParams,
@@ -135,9 +136,9 @@ namespace IO.Deliveree.Api
 
             HandleResponse(localVarResponse, methodName);
 
-            return new ApiResponse<JToken>((int)localVarResponse.StatusCode,
+            return new ApiResponse<DeliveryResponse>((int)localVarResponse.StatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                Configuration.ApiClient.Deserialize<JToken>(localVarResponse));
+                Configuration.ApiClient.Deserialize<DeliveryResponse>(localVarResponse));
         }
 
         /// <summary>
@@ -147,9 +148,9 @@ namespace IO.Deliveree.Api
         /// <param name="id"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of JToken</returns>
-        public async System.Threading.Tasks.Task<JToken> DeliveriesGetAsync(int? id, string acceptLanguage = null)
+        public async System.Threading.Tasks.Task<DeliveryResponse> DeliveriesGetAsync(int? id, string acceptLanguage = null)
         {
-            ApiResponse<JToken> localVarResponse = await DeliveriesGetAsyncWithHttpInfo(id, acceptLanguage);
+            ApiResponse<DeliveryResponse> localVarResponse = await DeliveriesGetAsyncWithHttpInfo(id, acceptLanguage);
             return localVarResponse.Data;
         }
 
@@ -160,7 +161,7 @@ namespace IO.Deliveree.Api
         /// <param name="id"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of ApiResponse (JToken)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<JToken>> DeliveriesGetAsyncWithHttpInfo(int? id, string acceptLanguage = null)
+        public async System.Threading.Tasks.Task<ApiResponse<DeliveryResponse>> DeliveriesGetAsyncWithHttpInfo(int? id, string acceptLanguage = null)
         {
             CreateDeliveriesGetParams(id, acceptLanguage,
             out string localVarPath, out Dictionary<string, string> localVarPathParams, out List<KeyValuePair<string, string>> localVarQueryParams,
@@ -174,9 +175,9 @@ namespace IO.Deliveree.Api
 
             HandleResponse(localVarResponse, methodName);
 
-            return new ApiResponse<JToken>((int)localVarResponse.StatusCode,
+            return new ApiResponse<DeliveryResponse>((int)localVarResponse.StatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                Configuration.ApiClient.Deserialize<JToken>(localVarResponse));
+                Configuration.ApiClient.Deserialize<DeliveryResponse>(localVarResponse));
         }
     }
 
