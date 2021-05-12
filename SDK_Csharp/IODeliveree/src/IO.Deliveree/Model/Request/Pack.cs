@@ -52,9 +52,9 @@ namespace IO.Deliveree.Model
         }
 
         /// <summary>
-        /// Returns true if Location instances are equal
+        /// Returns true if Pack instances are equal
         /// </summary>
-        /// <param name="input">Instance of Location to be compared</param>
+        /// <param name="input">Instance of Pack to be compared</param>
         /// <returns>Boolean</returns>
         public bool Equals(Pack input)
         {
