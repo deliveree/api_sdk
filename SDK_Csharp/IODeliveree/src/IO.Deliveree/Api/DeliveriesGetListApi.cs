@@ -1,4 +1,5 @@
 ﻿using IO.Deliveree.Client;
+using IO.Deliveree.Model.Reponse;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace IO.Deliveree.Api
         /// <param name="perPage"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>JToken</returns>
-        JToken DeliveriesGetList(int? page, int? perPage, string acceptLanguage = null);
+        ListDeliveryResponse DeliveriesGetList(int? page, int? perPage, string acceptLanguage = null);
 
         /// <summary>
         /// 
@@ -34,7 +35,7 @@ namespace IO.Deliveree.Api
         /// <param name="perPage"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>ApiResponse of JToken</returns>
-        ApiResponse<JToken> DeliveriesGetListWithHttpInfo(int? page, int? perPage, string acceptLanguage = null);
+        ApiResponse<ListDeliveryResponse> DeliveriesGetListWithHttpInfo(int? page, int? perPage, string acceptLanguage = null);
         #endregion Synchronous Operations
 
         #region Asynchronous Operations
@@ -50,7 +51,7 @@ namespace IO.Deliveree.Api
         /// <param name="perPage"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of JToken</returns>
-        System.Threading.Tasks.Task<JToken> DeliveriesGetListAsync(int? page, int? perPage, string acceptLanguage = null);
+        System.Threading.Tasks.Task<ListDeliveryResponse> DeliveriesGetListAsync(int? page, int? perPage, string acceptLanguage = null);
 
         /// <summary>
         /// 
@@ -63,7 +64,7 @@ namespace IO.Deliveree.Api
         /// <param name="perPage"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of ApiResponse (JToken)</returns>
-        System.Threading.Tasks.Task<ApiResponse<JToken>> DeliveriesGetListAsyncWithHttpInfo(int? page, int? perPage, string acceptLanguage = null);
+        System.Threading.Tasks.Task<ApiResponse<ListDeliveryResponse>> DeliveriesGetListAsyncWithHttpInfo(int? page, int? perPage, string acceptLanguage = null);
 
         #endregion Asynchronous Operations
     }
@@ -123,7 +124,7 @@ namespace IO.Deliveree.Api
         /// <param name="perPage"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>JToken</returns>
-        public JToken DeliveriesGetList(int? page, int? perPage, string acceptLanguage = null) =>
+        public ListDeliveryResponse DeliveriesGetList(int? page, int? perPage, string acceptLanguage = null) =>
              DeliveriesGetListWithHttpInfo(page, perPage, acceptLanguage).Data;
 
         /// <summary>
@@ -134,7 +135,7 @@ namespace IO.Deliveree.Api
         /// <param name="perPage"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>ApiResponse of JToken</returns>
-        public ApiResponse<JToken> DeliveriesGetListWithHttpInfo(int? page, int? perPage, string acceptLanguage = null)
+        public ApiResponse<ListDeliveryResponse> DeliveriesGetListWithHttpInfo(int? page, int? perPage, string acceptLanguage = null)
         {
             CreateDeliveriesGetListParams(page, perPage, acceptLanguage,
             out string localVarPath, out Dictionary<string, string> localVarPathParams, out List<KeyValuePair<string, string>> localVarQueryParams,
@@ -148,9 +149,9 @@ namespace IO.Deliveree.Api
 
             HandleResponse(localVarResponse, methodName);
 
-            return new ApiResponse<JToken>((int)localVarResponse.StatusCode,
+            return new ApiResponse<ListDeliveryResponse>((int)localVarResponse.StatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                Configuration.ApiClient.Deserialize<JToken>(localVarResponse));
+                Configuration.ApiClient.Deserialize<ListDeliveryResponse>(localVarResponse));
         }
 
         /// <summary>
@@ -161,9 +162,9 @@ namespace IO.Deliveree.Api
         /// <param name="perPage"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of JToken</returns>
-        public async System.Threading.Tasks.Task<JToken> DeliveriesGetListAsync(int? page, int? perPage, string acceptLanguage = null)
+        public async System.Threading.Tasks.Task<ListDeliveryResponse> DeliveriesGetListAsync(int? page, int? perPage, string acceptLanguage = null)
         {
-            ApiResponse<JToken> localVarResponse = await DeliveriesGetListAsyncWithHttpInfo(page, perPage, acceptLanguage);
+            ApiResponse<ListDeliveryResponse> localVarResponse = await DeliveriesGetListAsyncWithHttpInfo(page, perPage, acceptLanguage);
             return localVarResponse.Data;
         }
 
@@ -175,7 +176,7 @@ namespace IO.Deliveree.Api
         /// <param name="perPage"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of ApiResponse (JToken)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<JToken>> DeliveriesGetListAsyncWithHttpInfo(int? page, int? perPage, string acceptLanguage = null)
+        public async System.Threading.Tasks.Task<ApiResponse<ListDeliveryResponse>> DeliveriesGetListAsyncWithHttpInfo(int? page, int? perPage, string acceptLanguage = null)
         {
             CreateDeliveriesGetListParams(page, perPage, acceptLanguage,
             out string localVarPath, out Dictionary<string, string> localVarPathParams, out List<KeyValuePair<string, string>> localVarQueryParams,
@@ -189,9 +190,9 @@ namespace IO.Deliveree.Api
 
             HandleResponse(localVarResponse, methodName);
 
-            return new ApiResponse<JToken>((int)localVarResponse.StatusCode,
+            return new ApiResponse<ListDeliveryResponse>((int)localVarResponse.StatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                Configuration.ApiClient.Deserialize<JToken>(localVarResponse));
+                Configuration.ApiClient.Deserialize<ListDeliveryResponse>(localVarResponse));
         }
     }
 }

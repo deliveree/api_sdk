@@ -9,17 +9,11 @@
  */
 using System;
 using System.Linq;
-using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 using System.ComponentModel.DataAnnotations;
-using IDateTimeConverter = IO.Deliveree.Client.IDateTimeConverter;
 
 namespace IO.Deliveree.Model
 {
@@ -32,12 +26,22 @@ namespace IO.Deliveree.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="Quote" /> class.
         /// </summary>
+        /// <param name="pickupTime"></param>
+        /// <param name="vehicleTypeId"></param>
+        /// <param name="packs"></param>
         /// <param name="timeType">Only accept now or schedule.</param>
         /// <param name="locations">locations.</param>
-        public Quote(string timeType = default(string), List<Location> locations = default(List<Location>))
+        public Quote(DateTime? pickupTime = default(DateTime?),
+                    int? vehicleTypeId = default(int?),
+                    List<Pack> packs = default(List<Pack>),
+                    string timeType = default(string),
+                    List<Location> locations = default(List<Location>))
         {
-            this.TimeType = timeType;
-            this.Locations = locations;
+            TimeType = timeType;
+            Locations = locations;
+            PickupTime = pickupTime;
+            VehicleTypeId = vehicleTypeId;
+            Packs = packs;
         }
 
         /// <summary>
@@ -46,7 +50,21 @@ namespace IO.Deliveree.Model
         /// <value>Only accept now or schedule</value>
         [DataMember(Name = "time_type", EmitDefaultValue = false)]
         public string TimeType { get; set; }
-
+        /// <summary>
+        /// Gets or Sets pickup_time
+        /// </summary>
+        [DataMember(Name = "pickup_time", EmitDefaultValue = false)]
+        public DateTime? PickupTime { get; set; }
+        /// <summary>
+        /// Gets or Sets vehicle_type_id
+        /// </summary>
+        [DataMember(Name = "vehicle_type_id", EmitDefaultValue = false)]
+        public int? VehicleTypeId { get; set; }
+        /// <summary>
+        /// Gets or Sets packs
+        /// </summary>
+        [DataMember(Name = "packs", EmitDefaultValue = false)]
+        public List<Pack> Packs { get; set; }
         /// <summary>
         /// Gets or Sets Locations
         /// </summary>
@@ -61,6 +79,9 @@ namespace IO.Deliveree.Model
         {
             var sb = new StringBuilder();
             sb.Append("class Quote {\n");
+            sb.Append("  PickupTime: ").Append(PickupTime).Append("\n");
+            sb.Append("  VehicleTypeId: ").Append(VehicleTypeId).Append("\n");
+            sb.Append("  Packs: ").Append(Packs).Append("\n");
             sb.Append("  TimeType: ").Append(TimeType).Append("\n");
             sb.Append("  Locations: ").Append(Locations).Append("\n");
             sb.Append("}\n");
@@ -107,6 +128,22 @@ namespace IO.Deliveree.Model
                     this.Locations != null &&
                     input.Locations != null &&
                     this.Locations.SequenceEqual(input.Locations)
+                ) &&
+                (
+                    this.PickupTime == input.PickupTime ||
+                    (this.PickupTime != null &&
+                    this.TimeType.Equals(input.PickupTime))
+                ) &&
+                (
+                    this.VehicleTypeId == input.VehicleTypeId ||
+                    (this.VehicleTypeId != null &&
+                    this.VehicleTypeId.Equals(input.VehicleTypeId))
+                ) &&
+                (
+                    this.Packs == input.Packs ||
+                    this.Packs != null &&
+                    input.Packs != null &&
+                    this.Packs.SequenceEqual(input.Packs)
                 );
         }
 
@@ -123,6 +160,12 @@ namespace IO.Deliveree.Model
                     hashCode = hashCode * 59 + this.TimeType.GetHashCode();
                 if (this.Locations != null)
                     hashCode = hashCode * 59 + this.Locations.GetHashCode();
+                if (this.Packs != null)
+                    hashCode = hashCode * 59 + this.Packs.GetHashCode();
+                if (this.PickupTime != null)
+                    hashCode = hashCode * 59 + this.PickupTime.GetHashCode();
+                if (this.VehicleTypeId != null)
+                    hashCode = hashCode * 59 + this.VehicleTypeId.GetHashCode();
                 return hashCode;
             }
         }

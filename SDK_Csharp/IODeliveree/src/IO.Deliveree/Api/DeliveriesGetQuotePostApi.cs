@@ -1,5 +1,6 @@
 ﻿using IO.Deliveree.Client;
 using IO.Deliveree.Model;
+using IO.Deliveree.Model.Reponse;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 using System.Collections.Generic;
@@ -24,7 +25,7 @@ namespace IO.Deliveree.Api
         /// <param name="body"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>JToken</returns>
-        JToken DeliveriesGetQuotePost(Quote body, string acceptLanguage = null);
+         QuoteResponses DeliveriesGetQuotePost(Quote body, string acceptLanguage = null);
 
         /// <summary>
         /// 
@@ -36,7 +37,7 @@ namespace IO.Deliveree.Api
         /// <param name="body"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>ApiResponse of JToken</returns>
-        ApiResponse<JToken> DeliveriesGetQuotePostWithHttpInfo(Quote body, string acceptLanguage = null);
+        ApiResponse<QuoteResponses> DeliveriesGetQuotePostWithHttpInfo(Quote body, string acceptLanguage = null);
         #endregion Synchronous Operations
 
         #region Asynchronous Operations
@@ -51,7 +52,7 @@ namespace IO.Deliveree.Api
         /// <param name="body"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of JToken</returns>
-        System.Threading.Tasks.Task<JToken> DeliveriesGetQuotePostAsync(Quote body, string acceptLanguage = null);
+        System.Threading.Tasks.Task<QuoteResponses> DeliveriesGetQuotePostAsync(Quote body, string acceptLanguage = null);
 
         /// <summary>
         /// 
@@ -63,7 +64,7 @@ namespace IO.Deliveree.Api
         /// <param name="body"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of ApiResponse (JToken)</returns>
-        System.Threading.Tasks.Task<ApiResponse<JToken>> DeliveriesGetQuotePostAsyncWithHttpInfo(Quote body, string acceptLanguage = null);
+        System.Threading.Tasks.Task<ApiResponse<QuoteResponses>> DeliveriesGetQuotePostAsyncWithHttpInfo(Quote body, string acceptLanguage = null);
 
         #endregion Asynchronous Operations
     }
@@ -121,7 +122,7 @@ namespace IO.Deliveree.Api
         /// <param name="body"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>JToken</returns>
-        public JToken DeliveriesGetQuotePost(Quote body, string acceptLanguage = null) =>
+        public QuoteResponses DeliveriesGetQuotePost(Quote body, string acceptLanguage = null) =>
              DeliveriesGetQuotePostWithHttpInfo(body, acceptLanguage).Data;
         /// <summary>
         ///  
@@ -130,7 +131,7 @@ namespace IO.Deliveree.Api
         /// <param name="body"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>ApiResponse of JToken</returns>
-        public ApiResponse<JToken> DeliveriesGetQuotePostWithHttpInfo(Quote body, string acceptLanguage = null)
+        public ApiResponse<QuoteResponses> DeliveriesGetQuotePostWithHttpInfo(Quote body, string acceptLanguage = null)
         {
             CreateDeliveriesGetQuotePostParams(body, acceptLanguage,
             out string localVarPath, out Dictionary<string, string> localVarPathParams, out List<KeyValuePair<string, string>> localVarQueryParams,
@@ -144,9 +145,9 @@ namespace IO.Deliveree.Api
 
             HandleResponse(localVarResponse, methodName);
 
-            return new ApiResponse<JToken>((int)localVarResponse.StatusCode,
+            return new ApiResponse<QuoteResponses>((int)localVarResponse.StatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                Configuration.ApiClient.Deserialize<JToken>(localVarResponse));
+                Configuration.ApiClient.Deserialize<QuoteResponses>(localVarResponse));
         }
 
         /// <summary>
@@ -156,9 +157,9 @@ namespace IO.Deliveree.Api
         /// <param name="body"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of JToken</returns>
-        public async System.Threading.Tasks.Task<JToken> DeliveriesGetQuotePostAsync(Quote body, string acceptLanguage = null)
+        public async System.Threading.Tasks.Task<QuoteResponses> DeliveriesGetQuotePostAsync(Quote body, string acceptLanguage = null)
         {
-            ApiResponse<JToken> localVarResponse = await DeliveriesGetQuotePostAsyncWithHttpInfo(body, acceptLanguage);
+            ApiResponse<QuoteResponses> localVarResponse = await DeliveriesGetQuotePostAsyncWithHttpInfo(body, acceptLanguage);
             return localVarResponse.Data;
 
         }
@@ -170,7 +171,7 @@ namespace IO.Deliveree.Api
         /// <param name="body"></param>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of ApiResponse (JToken)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<JToken>> DeliveriesGetQuotePostAsyncWithHttpInfo(Quote body, string acceptLanguage = null)
+        public async System.Threading.Tasks.Task<ApiResponse<QuoteResponses>> DeliveriesGetQuotePostAsyncWithHttpInfo(Quote body, string acceptLanguage = null)
         {
             CreateDeliveriesGetQuotePostParams(body, acceptLanguage,
             out string localVarPath, out Dictionary<string, string> localVarPathParams, out List<KeyValuePair<string, string>> localVarQueryParams,
@@ -183,9 +184,9 @@ namespace IO.Deliveree.Api
 
             HandleResponse(localVarResponse, methodName);
 
-            return new ApiResponse<JToken>((int)localVarResponse.StatusCode,
+            return new ApiResponse<QuoteResponses>((int)localVarResponse.StatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                Configuration.ApiClient.Deserialize<JToken>(localVarResponse));
+                Configuration.ApiClient.Deserialize<QuoteResponses>(localVarResponse));
         }
 
     }
