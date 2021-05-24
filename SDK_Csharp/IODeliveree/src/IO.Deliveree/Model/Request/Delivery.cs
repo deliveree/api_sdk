@@ -21,7 +21,7 @@ namespace IO.Deliveree.Model
     /// Delivery
     /// </summary>
     [DataContract]
-        public partial class Delivery :  IEquatable<Delivery>, IValidatableObject
+    public partial class Delivery : IEquatable<Delivery>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Delivery" /> class.
@@ -37,7 +37,20 @@ namespace IO.Deliveree.Model
         /// <param name="fleetPartnerId">fleetPartnerId.</param>
         /// <param name="containerSize">containerSize.</param>
         /// <param name="locations">locations.</param>
-        public Delivery(int? vehicleTypeId = default(int?), string note = default(string), string timeType = default(string), DateTime? pickupTime = default(DateTime?), string jobOrderNumber = default(string), bool? allowParkingFees = default(bool?), bool? allowTollsFees = default(bool?), bool? allowWaitingTimeFees = default(bool?), int? fleetPartnerId = default(int?), string containerSize = default(string), List<Location> locations = default(List<Location>))
+        public Delivery(int? vehicleTypeId = default(int?),
+                        string note = default(string),
+                        string timeType = default(string),
+                        DateTime? pickupTime = default(DateTime?),
+                        string jobOrderNumber = default(string),
+                        bool? allowParkingFees = default(bool?),
+                        bool? allowTollsFees = default(bool?),
+                        bool? allowWaitingTimeFees = default(bool?),
+                        int? fleetPartnerId = default(int?),
+                        string containerSize = default(string),
+                        List<Location> locations = default(List<Location>),
+                        bool? optimizeRoute = default(bool?),
+                        bool? sendFirstToFavorite = default(bool?),
+                        bool? require_signatures = default(bool?))
         {
             this.VehicleTypeId = vehicleTypeId;
             this.Note = note;
@@ -50,72 +63,89 @@ namespace IO.Deliveree.Model
             this.FleetPartnerId = fleetPartnerId;
             this.ContainerSize = containerSize;
             this.Locations = locations;
+            this.OptimizeRoute = optimizeRoute;
+            this.SendFirstToFavorite = sendFirstToFavorite;
+            this.RequireSignatures = require_signatures;
         }
-        
+
         /// <summary>
         /// Gets or Sets VehicleTypeId
         /// </summary>
-        [DataMember(Name="vehicle_type_id", EmitDefaultValue=false)]
+        [DataMember(Name = "vehicle_type_id", EmitDefaultValue = false)]
         public int? VehicleTypeId { get; set; }
 
         /// <summary>
         /// Gets or Sets Note
         /// </summary>
-        [DataMember(Name="note", EmitDefaultValue=false)]
+        [DataMember(Name = "note", EmitDefaultValue = false)]
         public string Note { get; set; }
 
         /// <summary>
         /// Gets or Sets TimeType
         /// </summary>
-        [DataMember(Name="time_type", EmitDefaultValue=false)]
+        [DataMember(Name = "time_type", EmitDefaultValue = false)]
         public string TimeType { get; set; }
 
         /// <summary>
         /// Gets or Sets PickupTime
         /// </summary>
-        [DataMember(Name="pickup_time", EmitDefaultValue=false)]
+        [DataMember(Name = "pickup_time", EmitDefaultValue = false)]
         public DateTime? PickupTime { get; set; }
 
         /// <summary>
         /// Gets or Sets JobOrderNumber
         /// </summary>
-        [DataMember(Name="job_order_number", EmitDefaultValue=false)]
+        [DataMember(Name = "job_order_number", EmitDefaultValue = false)]
         public string JobOrderNumber { get; set; }
 
         /// <summary>
         /// Gets or Sets AllowParkingFees
         /// </summary>
-        [DataMember(Name="allow_parking_fees", EmitDefaultValue=false)]
+        [DataMember(Name = "allow_parking_fees", EmitDefaultValue = false)]
         public bool? AllowParkingFees { get; set; }
 
         /// <summary>
         /// Gets or Sets AllowTollsFees
         /// </summary>
-        [DataMember(Name="allow_tolls_fees", EmitDefaultValue=false)]
+        [DataMember(Name = "allow_tolls_fees", EmitDefaultValue = false)]
         public bool? AllowTollsFees { get; set; }
 
         /// <summary>
         /// Gets or Sets AllowWaitingTimeFees
         /// </summary>
-        [DataMember(Name="allow_waiting_time_fees", EmitDefaultValue=false)]
+        [DataMember(Name = "allow_waiting_time_fees", EmitDefaultValue = false)]
         public bool? AllowWaitingTimeFees { get; set; }
-
+        /// <summary>
+        /// Gets or Sets OptimizeRoute
+        /// </summary>
+        [DataMember(Name = "optimize_route", EmitDefaultValue = false)]
+        public bool? OptimizeRoute { get; set; }
+        /// <summary>
+        /// Gets or Sets SendFirstToFavorite
+        /// </summary>
+        [DataMember(Name = "send_first_to_favorite", EmitDefaultValue = false)]
+        public bool? SendFirstToFavorite { get; set; }
+        /// <summary>
+        /// Gets or Sets RequireSignatures
+        /// </summary>
+        [DataMember(Name = "require_signatures", EmitDefaultValue = false)]
+        public bool? RequireSignatures { get; set; }
         /// <summary>
         /// Gets or Sets FleetPartnerId
         /// </summary>
-        [DataMember(Name="fleet_partner_id", EmitDefaultValue=false)]
+        [DataMember(Name = "fleet_partner_id", EmitDefaultValue = false)]
         public int? FleetPartnerId { get; set; }
 
         /// <summary>
         /// Gets or Sets ContainerSize
         /// </summary>
-        [DataMember(Name="container_size", EmitDefaultValue=false)]
+        [DataMember(Name = "container_size", EmitDefaultValue = false)]
         public string ContainerSize { get; set; }
 
         /// <summary>
         /// Gets or Sets Locations
         /// </summary>
-        [DataMember(Name="locations", EmitDefaultValue=false)]
+        [DataMember(Name = "locations", EmitDefaultValue = false)]
         public List<Location> Locations { get; set; }
 
         /// <summary>
@@ -137,10 +167,13 @@ namespace IO.Deliveree.Model
             sb.Append("  FleetPartnerId: ").Append(FleetPartnerId).Append("\n");
             sb.Append("  ContainerSize: ").Append(ContainerSize).Append("\n");
             sb.Append("  Locations: ").Append(Locations).Append("\n");
+            sb.Append("  OptimizeRoute: ").Append(OptimizeRoute).Append("\n");
+            sb.Append("  SendFirstToFavorite: ").Append(SendFirstToFavorite).Append("\n");
+            sb.Append("  RequireSignatures: ").Append(RequireSignatures).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
-  
+
         /// <summary>
         /// Returns the JSON string presentation of the object
         /// </summary>
@@ -170,62 +203,77 @@ namespace IO.Deliveree.Model
             if (input == null)
                 return false;
 
-            return 
+            return
                 (
                     this.VehicleTypeId == input.VehicleTypeId ||
                     (this.VehicleTypeId != null &&
                     this.VehicleTypeId.Equals(input.VehicleTypeId))
-                ) && 
+                ) &&
                 (
                     this.Note == input.Note ||
                     (this.Note != null &&
                     this.Note.Equals(input.Note))
-                ) && 
+                ) &&
                 (
                     this.TimeType == input.TimeType ||
                     (this.TimeType != null &&
                     this.TimeType.Equals(input.TimeType))
-                ) && 
+                ) &&
                 (
                     this.PickupTime == input.PickupTime ||
                     (this.PickupTime != null &&
                     this.PickupTime.Equals(input.PickupTime))
-                ) && 
+                ) &&
                 (
                     this.JobOrderNumber == input.JobOrderNumber ||
                     (this.JobOrderNumber != null &&
                     this.JobOrderNumber.Equals(input.JobOrderNumber))
-                ) && 
+                ) &&
                 (
                     this.AllowParkingFees == input.AllowParkingFees ||
                     (this.AllowParkingFees != null &&
                     this.AllowParkingFees.Equals(input.AllowParkingFees))
-                ) && 
+                ) &&
                 (
                     this.AllowTollsFees == input.AllowTollsFees ||
                     (this.AllowTollsFees != null &&
                     this.AllowTollsFees.Equals(input.AllowTollsFees))
-                ) && 
+                ) &&
                 (
                     this.AllowWaitingTimeFees == input.AllowWaitingTimeFees ||
                     (this.AllowWaitingTimeFees != null &&
                     this.AllowWaitingTimeFees.Equals(input.AllowWaitingTimeFees))
-                ) && 
+                ) &&
                 (
                     this.FleetPartnerId == input.FleetPartnerId ||
                     (this.FleetPartnerId != null &&
                     this.FleetPartnerId.Equals(input.FleetPartnerId))
-                ) && 
+                ) &&
                 (
                     this.ContainerSize == input.ContainerSize ||
                     (this.ContainerSize != null &&
                     this.ContainerSize.Equals(input.ContainerSize))
-                ) && 
+                ) &&
                 (
                     this.Locations == input.Locations ||
                     this.Locations != null &&
                     input.Locations != null &&
                     this.Locations.SequenceEqual(input.Locations)
+                ) &&
+                (
+                    this.OptimizeRoute == input.OptimizeRoute ||
+                    (this.OptimizeRoute != null &&
+                    this.OptimizeRoute.Equals(input.OptimizeRoute))
+                ) &&
+                (
+                    this.SendFirstToFavorite == input.SendFirstToFavorite ||
+                    (this.SendFirstToFavorite != null &&
+                    this.SendFirstToFavorite.Equals(input.SendFirstToFavorite))
+                ) &&
+                (
+                    this.RequireSignatures == input.RequireSignatures ||
+                    (this.RequireSignatures != null &&
+                    this.RequireSignatures.Equals(input.RequireSignatures))
                 );
         }
 
@@ -260,6 +308,12 @@ namespace IO.Deliveree.Model
                     hashCode = hashCode * 59 + this.ContainerSize.GetHashCode();
                 if (this.Locations != null)
                     hashCode = hashCode * 59 + this.Locations.GetHashCode();
+                if (this.OptimizeRoute != null)
+                    hashCode = hashCode * 59 + this.OptimizeRoute.GetHashCode();
+                if (this.SendFirstToFavorite != null)
+                    hashCode = hashCode * 59 + this.SendFirstToFavorite.GetHashCode();
+                if (this.RequireSignatures != null)
+                    hashCode = hashCode * 59 + this.RequireSignatures.GetHashCode();
                 return hashCode;
             }
         }

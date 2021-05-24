@@ -82,10 +82,15 @@ Contact: duke@deliveree.com
     <Compile Include="Client\IApiAccessor.cs" />
     <Compile Include="Client\IDateTimeConverter.cs" />
     <Compile Include="Client\IReadableConfiguration.cs" />
-    <Compile Include="Model\Delivery.cs" />
-    <Compile Include="Model\Location.cs" />
-    <Compile Include="Model\PositionTracking.cs" />
-    <Compile Include="Model\Quote.cs" />
+    <Compile Include="Model\Request\Delivery.cs" />
+    <Compile Include="Model\Request\Location.cs" />
+    <Compile Include="Model\Request\Pack.cs" />
+    <Compile Include="Model\Request\PositionTracking.cs" />
+    <Compile Include="Model\Request\Quote.cs" />
+    <Compile Include="Model\Reponse\ListDeliveryResponse.cs" />
+    <Compile Include="Model\Reponse\DeliveryResponse.cs" />
+    <Compile Include="Model\Reponse\QuoteResponse.cs" />
+    <Compile Include="Model\Reponse\VehicleTypeReponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

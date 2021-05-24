@@ -53,6 +53,7 @@ class Quote implements ModelInterface, ArrayAccess
       */
     protected static $swaggerTypes = [
         'time_type' => 'string',
+        'pickup_time' => '\DateTime',
 'locations' => '\Deliveree\Client\Model\Location[]'    ];
 
     /**
@@ -62,6 +63,7 @@ class Quote implements ModelInterface, ArrayAccess
       */
     protected static $swaggerFormats = [
         'time_type' => null,
+        'pickup_time' => 'date-time',
 'locations' => null    ];
 
     /**
@@ -92,6 +94,7 @@ class Quote implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'time_type' => 'time_type',
+        'pickup_time' => 'pickup_time',
 'locations' => 'locations'    ];
 
     /**
@@ -101,6 +104,7 @@ class Quote implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'time_type' => 'setTimeType',
+        'pickup_time' => 'setPickupTime',
 'locations' => 'setLocations'    ];
 
     /**
@@ -110,6 +114,7 @@ class Quote implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'time_type' => 'getTimeType',
+        'pickup_time' => 'getPickupTime',
 'locations' => 'getLocations'    ];
 
     /**
@@ -171,6 +176,7 @@ class Quote implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['time_type'] = isset($data['time_type']) ? $data['time_type'] : null;
+        $this->container['pickup_time'] = isset($data['pickup_time']) ? $data['pickup_time'] : null;
         $this->container['locations'] = isset($data['locations']) ? $data['locations'] : null;
     }
 
@@ -218,6 +224,30 @@ class Quote implements ModelInterface, ArrayAccess
     public function setTimeType($time_type)
     {
         $this->container['time_type'] = $time_type;
+
+        return $this;
+    }
+
+    /**
+     * Gets pickup_time
+     *
+     * @return \DateTime
+     */
+    public function getPickupTime()
+    {
+        return $this->container['pickup_time'];
+    }
+
+    /**
+     * Sets pickup_time
+     *
+     * @param \DateTime $pickup_time pickup_time
+     *
+     * @return $this
+     */
+    public function setPickupTime($pickup_time)
+    {
+        $this->container['pickup_time'] = $pickup_time;
 
         return $this;
     }
