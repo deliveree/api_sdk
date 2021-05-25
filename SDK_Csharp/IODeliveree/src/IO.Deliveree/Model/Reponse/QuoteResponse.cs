@@ -30,7 +30,7 @@ namespace IO.Deliveree.Model.Reponse
         [DataMember(Name = "total_distance")]
         public float TotalDistance { get; set; }
         [DataMember(Name = "vehicle_type")]
-        public VehicleTypeReponse VehicleType { get; set; }
+        public VehicleTypeResponse VehicleType { get; set; }
     }
     [DataContract]
     public class QuoteResponses

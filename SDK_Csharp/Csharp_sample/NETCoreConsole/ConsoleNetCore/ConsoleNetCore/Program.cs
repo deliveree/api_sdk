@@ -4,6 +4,7 @@ using System.Diagnostics;
 using IO.Deliveree.Api;
 using IO.Deliveree.Client;
 using IO.Deliveree.Model;
+using IO.Deliveree.Model.Reponse;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -13,7 +14,7 @@ namespace ConsoleNetCore
     {
         static void Main(string[] args)
         {
-            Configuration.Default.ApiKey.Add("Authorization", "ZrfYRQAzqMS9BH8QQhxa");
+            Configuration.Default.ApiKey.Add("Authorization", "_v1MhCyxVohbhWsbJ5x3");
             DeliveryGetQuotes();
             //VehicleTypesGet();
             //AddDelivery();
@@ -64,7 +65,7 @@ namespace ConsoleNetCore
 
             try
             {
-                ApiResponse<JToken> result = apiInstance.DeliveriesPostWithHttpInfo(body);
+                ApiResponse<DeliveryResponse> result = apiInstance.DeliveriesPostWithHttpInfo(body);
                 Console.WriteLine(result.StatusCode);
             }
             catch (Exception e)
@@ -85,7 +86,7 @@ namespace ConsoleNetCore
 
             try
             {
-                ApiResponse<JToken> result = apiInstance.DeliveriesGetWithHttpInfo(id);
+                ApiResponse<DeliveryResponse> result = apiInstance.DeliveriesGetWithHttpInfo(id);
                 Console.WriteLine(result.Data);
             }
             catch (Exception e)
@@ -106,7 +107,7 @@ namespace ConsoleNetCore
 
             try
             {
-                ApiResponse<JToken> result = apiInstance.DeliveriesGetListWithHttpInfo(1,1);
+                ApiResponse<ListDeliveryResponse> result = apiInstance.DeliveriesGetListWithHttpInfo(1,1);
                 Console.WriteLine(result.Data.ToString());
             }
             catch (Exception e)
@@ -138,7 +139,7 @@ namespace ConsoleNetCore
 
             try
             {
-                ApiResponse<JToken> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
+                ApiResponse<QuoteResponses> result = apiInstance.DeliveriesGetQuotePostWithHttpInfo(body);
                 Console.WriteLine(result.Data.ToString());
             }
             catch (Exception e)
@@ -158,7 +159,7 @@ namespace ConsoleNetCore
 
             try
             {
-                ApiResponse<JToken> result = apiInstance.VehicleTypesGetWithHttpInfo();
+                ApiResponse<VehicleTypeResponses> result = apiInstance.VehicleTypesGetWithHttpInfo();
                 Console.WriteLine(result.Data.ToString());
             }
             catch (Exception e)
