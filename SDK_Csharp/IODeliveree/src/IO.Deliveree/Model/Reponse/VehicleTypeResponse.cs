@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace IO.Deliveree.Model.Reponse
 {
     [DataContract]
-    public class VehicleTypeReponse
+    public class VehicleTypeResponse
     {
         [DataMember(Name = "id")]
         public int Id { get; set; }
@@ -22,9 +22,9 @@ namespace IO.Deliveree.Model.Reponse
         public float? CargoCubicMeter { get; set; }
     }
     [DataContract]
-    public class VehicleTypeReponses
+    public class VehicleTypeResponses
     {
         [DataMember(Name = "data")]
-        public List<VehicleTypeReponse> Data { get; set; }
+        public List<VehicleTypeResponse> Data { get; set; }
     }
 }

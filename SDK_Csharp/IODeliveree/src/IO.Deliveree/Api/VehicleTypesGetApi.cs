@@ -20,7 +20,7 @@ namespace IO.Deliveree.Api
         /// <exception cref="IO.Deliveree.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>JToken</returns>
-        VehicleTypeReponses VehicleTypesGet(string acceptLanguage = null);
+        VehicleTypeResponses VehicleTypesGet(string acceptLanguage = null);
 
         /// <summary>
         /// 
@@ -31,7 +31,7 @@ namespace IO.Deliveree.Api
         /// <exception cref="IO.Deliveree.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>ApiResponse of JToken</returns>
-        ApiResponse<VehicleTypeReponses> VehicleTypesGetWithHttpInfo(string acceptLanguage = null);
+        ApiResponse<VehicleTypeResponses> VehicleTypesGetWithHttpInfo(string acceptLanguage = null);
         #endregion Synchronous Operations
 
         #region Asynchronous Operations
@@ -45,7 +45,7 @@ namespace IO.Deliveree.Api
         /// <exception cref="IO.Deliveree.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of JToken</returns>
-        System.Threading.Tasks.Task<VehicleTypeReponses> VehicleTypesGetAsync(string acceptLanguage = null);
+        System.Threading.Tasks.Task<VehicleTypeResponses> VehicleTypesGetAsync(string acceptLanguage = null);
 
         /// <summary>
         /// 
@@ -56,7 +56,7 @@ namespace IO.Deliveree.Api
         /// <exception cref="IO.Deliveree.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of ApiResponse (JToken)</returns>
-        System.Threading.Tasks.Task<ApiResponse<VehicleTypeReponses>> VehicleTypesGetAsyncWithHttpInfo(string acceptLanguage = null);
+        System.Threading.Tasks.Task<ApiResponse<VehicleTypeResponses>> VehicleTypesGetAsyncWithHttpInfo(string acceptLanguage = null);
 
         #endregion Asynchronous Operations
     }
@@ -101,7 +101,7 @@ namespace IO.Deliveree.Api
         /// <exception cref="IO.Deliveree.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>JToken</returns>
-        public VehicleTypeReponses VehicleTypesGet(string acceptLanguage = null) =>
+        public VehicleTypeResponses VehicleTypesGet(string acceptLanguage = null) =>
              VehicleTypesGetWithHttpInfo(acceptLanguage).Data;
 
         /// <summary>
@@ -110,7 +110,7 @@ namespace IO.Deliveree.Api
         /// <exception cref="IO.Deliveree.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>ApiResponse of JToken</returns>
-        public ApiResponse<VehicleTypeReponses> VehicleTypesGetWithHttpInfo(string acceptLanguage = null)
+        public ApiResponse<VehicleTypeResponses> VehicleTypesGetWithHttpInfo(string acceptLanguage = null)
         {
             CreateVehicleTypesGetParams(acceptLanguage,
             out string localVarPath, out Dictionary<string, string> localVarPathParams, out List<KeyValuePair<string, string>> localVarQueryParams,
@@ -124,9 +124,9 @@ namespace IO.Deliveree.Api
 
             HandleResponse(localVarResponse, methodName);
 
-            return new ApiResponse<VehicleTypeReponses>((int)localVarResponse.StatusCode,
+            return new ApiResponse<VehicleTypeResponses>((int)localVarResponse.StatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                Configuration.ApiClient.Deserialize<VehicleTypeReponses>(localVarResponse));
+                Configuration.ApiClient.Deserialize<VehicleTypeResponses>(localVarResponse));
         }
 
         /// <summary>
@@ -135,9 +135,9 @@ namespace IO.Deliveree.Api
         /// <exception cref="IO.Deliveree.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of JToken</returns>
-        public async System.Threading.Tasks.Task<VehicleTypeReponses> VehicleTypesGetAsync(string acceptLanguage = null)
+        public async System.Threading.Tasks.Task<VehicleTypeResponses> VehicleTypesGetAsync(string acceptLanguage = null)
         {
-            ApiResponse<VehicleTypeReponses> localVarResponse = await VehicleTypesGetAsyncWithHttpInfo(acceptLanguage);
+            ApiResponse<VehicleTypeResponses> localVarResponse = await VehicleTypesGetAsyncWithHttpInfo(acceptLanguage);
             return localVarResponse.Data;
         }
 
@@ -147,7 +147,7 @@ namespace IO.Deliveree.Api
         /// <exception cref="IO.Deliveree.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="acceptLanguage"> (optional)</param>
         /// <returns>Task of ApiResponse (JToken)</returns>
-        public async System.Threading.Tasks.Task<ApiResponse<VehicleTypeReponses>> VehicleTypesGetAsyncWithHttpInfo(string acceptLanguage = null)
+        public async System.Threading.Tasks.Task<ApiResponse<VehicleTypeResponses>> VehicleTypesGetAsyncWithHttpInfo(string acceptLanguage = null)
         {
             CreateVehicleTypesGetParams(acceptLanguage,
             out string localVarPath, out Dictionary<string, string> localVarPathParams, out List<KeyValuePair<string, string>> localVarQueryParams,
@@ -161,9 +161,9 @@ namespace IO.Deliveree.Api
 
             HandleResponse(localVarResponse, methodName);
 
-            return new ApiResponse<VehicleTypeReponses>((int)localVarResponse.StatusCode,
+            return new ApiResponse<VehicleTypeResponses>((int)localVarResponse.StatusCode,
                 localVarResponse.Headers.ToDictionary(x => x.Name, x => string.Join(",", x.Value)),
-                Configuration.ApiClient.Deserialize<VehicleTypeReponses>(localVarResponse));
+                Configuration.ApiClient.Deserialize<VehicleTypeResponses>(localVarResponse));
         }
     }
 }

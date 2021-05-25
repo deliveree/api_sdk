@@ -6,13 +6,13 @@ With Deliveree SDK, developers can integrate our on-demand local delivery platfo
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
-- .NET 4.5 or later
+- .NET 4.5.2 or later
 - .NET CORE 2.1.13 or later
 
 <a name="dependencies"></a>
 ## Dependencies
-- [RestSharp](https://www.nuget.org/packages/RestSharp) - 105.1.0 or later
-- [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/) - 7.0.0 or later
+- [RestSharp](https://www.nuget.org/packages/RestSharp) - 106.0.0 or later
+- [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/) - 10.0.3 or later
 - [JsonSubTypes](https://www.nuget.org/packages/JsonSubTypes/) - 1.2.0 or later
 
 ## Should be required for .Net core console application
