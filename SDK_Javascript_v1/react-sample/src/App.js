@@ -3,30 +3,34 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import DelivereeApi from "deliveree-sdk";
-const MainApp = props => {
+const MainApp = (props) => {
   const [resultGetQuote, setResultGetQuote] = useState(null);
   const [resultCancelBooking, setResultCancelBooking] = useState(null);
   const [resultCreateBooking, setResultCreateBooking] = useState(null);
+  const [resultGetDetails, setResultGetDetails] = useState(null);
+  const [resultGetVehicleTypes, setResultGetVehicleTypes] = useState(null);
+  const [resultGetBookingList, setResultGetBookingList] = useState(null);
+
   const [bookingID, setBookingID] = useState(0);
 
   const defaultClient = DelivereeApi.ApiClient.instance;
   const ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
   const api = new DelivereeApi.DelivereeApi();
-  ApiKeyAuth.apiKey = "ZrfYRQAzqMS9BH8QQhxa";
+  ApiKeyAuth.apiKey = "YOUR API KEY";
   const tDate = new Date().toISOString();
-  
+
   const cancelBooking = () => {
     let opts = {
-      acceptLanguage: "en" // {String}
+      acceptLanguage: "en", // {String}
     };
-    let callback = function(error, data, response) {
+    let callback = function (error, data, response) {
       console.log(response);
       if (error) {
         console.error(error);
-        setResultCancelBooking(JSON.stringify(response.body));
+        setResultCancelBooking(JSON.stringify(response.body, null, 4));
       } else {
         console.log("API called successfully.");
-        setResultCancelBooking(JSON.stringify(response.body));
+        setResultCancelBooking(JSON.stringify(response.body, null, 4));
       }
     };
     api.cancelBooking(bookingID, opts, callback);
@@ -48,7 +52,7 @@ const MainApp = props => {
           longitude: 106.7884168,
           recipient_name: "Duke",
           recipient_phone: "+84903398399",
-          note: "Second floor, room 609"
+          note: "Second floor, room 609",
         },
         {
           address:
@@ -63,18 +67,18 @@ const MainApp = props => {
           cod_note: "You need to get money from Nam",
           cod_invoice_fees: 5000,
           need_pod: true,
-          pod_note: "You need to ..."
-        }
-      ]
+          pod_note: "You need to ...",
+        },
+      ],
     };
 
-    var callback = function(error, data, response) {
+    var callback = function (error, data, response) {
       if (error) {
         console.error(error);
       } else {
         console.log("API called successfully.");
         setBookingID(data.id);
-        setResultCreateBooking(JSON.stringify(data));
+        setResultCreateBooking(JSON.stringify(data, null, 4));
       }
     };
     api.deliveriesPost(delivery, {}, callback);
@@ -82,31 +86,90 @@ const MainApp = props => {
 
   const getQuotes = () => {
     var opts = {
-      acceptLanguage: "en" // {String}
+      acceptLanguage: "en", // {String}
     };
     let data = {
       time_type: "now",
+      vehicle_type_id: 21,
       locations: [
         {
           address:
             "Jl. Sultan Iskandar Muda No.21, Arteri Pondok Indah, Pd. Pinang, Kby. Lama, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta, Indonesia",
           latitude: -6.2608232,
-          longitude: 106.7884168
-        }
-      ]
+          longitude: 106.7884168,
+        },
+      ],
     };
 
-    var callback = function(error, response) {
+    var callback = function (error, response) {
       console.log(response);
       if (error) {
         console.error(error);
       } else {
         console.log("API called successfully.");
 
-        setResultGetQuote(JSON.stringify(response));
+        setResultGetQuote(JSON.stringify(response, null, 4));
       }
     };
     api.deliveriesGetQuotePost(data, opts, callback);
+  };
+
+  const getDetails = () => {
+    let opts = {
+      acceptLanguage: "en", // {String}
+    };
+    let callback = function (error, data, response) {
+      console.log(response);
+      if (error) {
+        console.error(error);
+        setResultGetDetails(JSON.stringify(data, null, 4));
+      } else {
+        console.log("API called successfully.");
+        setResultGetDetails(JSON.stringify(data, null, 4));
+      }
+    };
+    api.deliveriesGet(bookingID, opts, callback);
+  };
+
+  const getBookingList = () => {
+    var opts = {
+      acceptLanguage: "en", // {String}
+    };
+
+    var params = {
+      page: 1, // {Number}
+      per_page: 10, // {Number}
+    };
+
+    var callback = function (error, data) {
+      console.log(data);
+      if (error) {
+        console.error(error);
+      } else {
+        console.log("API called successfully.");
+
+        setResultGetBookingList(JSON.stringify(data, null, 4));
+      }
+    };
+    api.deliveriesGetList(params, opts, callback);
+  };
+
+  const getVehicleTypes = () => {
+    var opts = {
+      acceptLanguage: "en", // {String}
+    };
+
+    var callback = function (error, response) {
+      console.log(response);
+      if (error) {
+        console.error(error);
+      } else {
+        console.log("API called successfully.");
+
+        setResultGetVehicleTypes(JSON.stringify(response, null, 4));
+      }
+    };
+    api.vehicleTypesGet(opts, callback);
   };
 
   return (
@@ -117,27 +180,41 @@ const MainApp = props => {
         <div className="item">
           <button onClick={getQuotes}>Get Quotes</button>
           {resultGetQuote && (
-            <p>Get Quote result status: {resultGetQuote} </p>
+            <pre>Get Quote result status: {resultGetQuote} </pre>
           )}
-        
         </div>
         <div className="item">
           <button onClick={createBookingDeliveree}>Create Booking</button>
           {resultCreateBooking && (
-            <p>Create booking result status: {resultCreateBooking} </p>
+            <pre>Create booking result status: {resultCreateBooking} </pre>
           )}
-          
         </div>
         <div className="item">
           <button className="btn btn-primary" onClick={cancelBooking}>
             Cancel Booking {bookingID}
           </button>
-          {resultCancelBooking &&(
-            <p> Cancel booking result status: { resultCancelBooking} </p>
+          {resultCancelBooking && (
+            <pre> Cancel booking result status: {resultCancelBooking} </pre>
           )}
-          
         </div>
-        
+        <div className="item">
+          <button onClick={getDetails}>Get Booking Details</button>
+          {resultGetDetails && (
+            <pre>Get Booking Details result status: {resultGetDetails} </pre>
+          )}
+        </div>
+        <div className="item">
+          <button onClick={getBookingList}>Get Booking List</button>
+          {resultGetBookingList && (
+            <pre>Get Booking List result status: {resultGetBookingList} </pre>
+          )}
+        </div>
+        <div className="item">
+          <button onClick={getVehicleTypes}>Get Vehicle Types</button>
+          {resultGetVehicleTypes && (
+            <pre>Get Vehicle Types result status: {resultGetVehicleTypes} </pre>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -147,7 +224,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img width="400px" src="https://webapp.sandbox.deliveree.com/assets/Logo_Deliveree_White-d827ebead28b15f9a3ef88d08086fa15.svg" className="App-logo" alt="logo" />
+        <img
+          width="400px"
+          src="https://webapp.sandbox.deliveree.com/assets/Logo_Deliveree_White-d827ebead28b15f9a3ef88d08086fa15.svg"
+          className="App-logo"
+          alt="logo"
+        />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>

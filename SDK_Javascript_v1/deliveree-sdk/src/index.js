@@ -6,17 +6,67 @@
  *
  */
 
-(function(factory) {
-  if (typeof define === 'function' && define.amd) {
+(function (factory) {
+  if (typeof define === "function" && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['./ApiClient', './model/Delivery', './model/InlineResponse200', './model/InlineResponse2001', './model/InlineResponse2001Data', './model/Location', './model/PositionTracking', './model/Quote', './api/DelivereeApi'], factory);
-  } else
-  if (typeof module === 'object' && module.exports) {
+    define([
+      "./ApiClient",
+      "./model/CreateDeliveryResponse",
+      "./model/QuoteResponse",
+      "./model/QuoteResponseData",
+      "./model/Location",
+      "./model/PositionTracking",
+      "./model/Driver",
+      "./model/DeliveryResponse",
+      "./model/Pagination",
+      "./model/DeliveryResponseList",
+      "./model/ProofOfDeliveryPhoto",
+      "./model/VehicleAttribute",
+      "./model/Vehicle",
+      "./model/VehicleTypeResponse",
+      "./model/VehicleTypeResponseList",
+      "./api/DelivereeApi",
+    ], factory);
+  } else if (typeof module === "object" && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('./ApiClient'), require('./model/Delivery'), require('./model/InlineResponse200'), require('./model/InlineResponse2001'), require('./model/InlineResponse2001Data'), require('./model/Location'), require('./model/PositionTracking'), require('./model/Quote'), require('./api/DelivereeApi'));
+    module.exports = factory(
+      require("./ApiClient"),
+      require("./model/CreateDeliveryResponse"),
+      require("./model/QuoteResponse"),
+      require("./model/QuoteResponseData"),
+      require("./model/Location"),
+      require("./model/PositionTracking"),
+      require("./model/Driver"),
+      require("./model/DeliveryResponse"),
+      require("./model/Pagination"),
+      require("./model/ProofOfDeliveryPhoto"),
+      require("./model/VehicleAttribute"),
+      require("./model/Vehicle"),
+      require("./model/DeliveryResponseList"),
+      require("./model/VehicleTypeResponse"),
+      require("./model/VehicleTypeResponseList"),
+      require("./api/DelivereeApi")
+    );
   }
-}(function(ApiClient, Delivery, InlineResponse200, InlineResponse2001, InlineResponse2001Data, Location, PositionTracking, Quote, DelivereeApi) {
-  'use strict';
+})(function (
+  ApiClient,
+  CreateDeliveryResponse,
+  QuoteResponse,
+  QuoteResponseData,
+  Location,
+  PositionTracking,
+  Driver,
+  DeliveryResponse,
+  Pagination,
+  ProofOfDeliveryPhoto,
+  VehicleAttribute,
+  Vehicle,
+  DeliveryResponseList,
+  VehicleTypeResponse,
+  VehicleTypeResponseList,
+  DelivereeApi
+) {
+  "use strict";
   /*
    * @module index
    * @version 1.0.0
@@ -28,25 +78,20 @@
      */
     ApiClient: ApiClient,
     /**
-     * The Delivery model constructor.
-     * @property {module:model/Delivery}
+     * The CreateDeliveryResponse model constructor.
+     * @property {module:model/CreateDeliveryResponse}
      */
-    Delivery: Delivery,
+    CreateDeliveryResponse: CreateDeliveryResponse,
     /**
-     * The InlineResponse200 model constructor.
-     * @property {module:model/InlineResponse200}
+     * The QuoteResponse model constructor.
+     * @property {module:model/QuoteResponse}
      */
-    InlineResponse200: InlineResponse200,
+    QuoteResponse: QuoteResponse,
     /**
-     * The InlineResponse2001 model constructor.
-     * @property {module:model/InlineResponse2001}
+     * The QuoteResponseData model constructor.
+     * @property {module:model/QuoteResponseData}
      */
-    InlineResponse2001: InlineResponse2001,
-    /**
-     * The InlineResponse2001Data model constructor.
-     * @property {module:model/InlineResponse2001Data}
-     */
-    InlineResponse2001Data: InlineResponse2001Data,
+    QuoteResponseData: QuoteResponseData,
     /**
      * The Location model constructor.
      * @property {module:model/Location}
@@ -58,16 +103,56 @@
      */
     PositionTracking: PositionTracking,
     /**
-     * The Quote model constructor.
-     * @property {module:model/Quote}
+     * The Driver model constructor.
+     * @property {module:model/Driver}
      */
-    Quote: Quote,
+    Driver: Driver,
+    /**
+     * The Pagination model constructor.
+     * @property {module:model/Pagination}
+     */
+    Pagination: Pagination,
+    /**
+     * The ProofOfDeliveryPhoto model constructor.
+     * @property {module:model/ProofOfDeliveryPhoto}
+     */
+    ProofOfDeliveryPhoto: ProofOfDeliveryPhoto,
+    /**
+     * The VehicleAttribute model constructor.
+     * @property {module:model/VehicleAttribute}
+     */
+    VehicleAttribute: VehicleAttribute,
+    /**
+     * The Vehicle model constructor.
+     * @property {module:model/Vehicle}
+     */
+    Vehicle: Vehicle,
+    /**
+     * The DeliveryResponseList model constructor.
+     * @property {module:model/DeliveryResponseList}
+     */
+    DeliveryResponseList: DeliveryResponseList,
+    /**
+     * The DeliveryResponse model constructor.
+     * @property {module:model/DeliveryResponse}
+     */
+    DeliveryResponse: DeliveryResponse,
+    /**
+     * The VehicleTypeResponse model constructor.
+     * @property {module:model/VehicleTypeResponse}
+     */
+    VehicleTypeResponse: VehicleTypeResponse,
+    /**
+     * The VehicleTypeResponseList model constructor.
+     * @property {module:model/VehicleTypeResponseList}
+     */
+    VehicleTypeResponseList: VehicleTypeResponseList,
     /**
      * The DelivereeApi service constructor.
      * @property {module:api/DelivereeApi}
      */
-    DelivereeApi: DelivereeApi
+    DelivereeApi: DelivereeApi,
   };
 
   return exports;
-}));
+});

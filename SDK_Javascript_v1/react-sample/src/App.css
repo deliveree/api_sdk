@@ -26,9 +26,10 @@
 .item {
   padding: 20px 0;
 }
-.item p {
-  background: #DDd;
+.item pre {
+  background: #ddd;
   color: #7f00ff;
+  text-align: left;
 }
 
 button {
