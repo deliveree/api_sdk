@@ -5,13 +5,13 @@
  * Contact: duke@deliveree.com
  */
 
-(function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
+(function (root, factory) {
+  if (typeof define === "function" && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['superagent', 'querystring'], factory);
-  } else if (typeof module === 'object' && module.exports) {
+    define(["superagent", "querystring"], factory);
+  } else if (typeof module === "object" && module.exports) {
     // CommonJS-like environments that support module.exports, like Node.
-    module.exports = factory(require('superagent'), require('querystring'));
+    module.exports = factory(require("superagent"), require("querystring"));
   } else {
     // Browser globals (root is window)
     if (!root.DelivereeApi) {
@@ -19,8 +19,8 @@
     }
     root.DelivereeApi.ApiClient = factory(root.superagent, root.querystring);
   }
-}(this, function(superagent, querystring) {
-  'use strict';
+})(this, function (superagent, querystring) {
+  "use strict";
 
   /**
    * @module ApiClient
@@ -34,20 +34,23 @@
    * @alias module:ApiClient
    * @class
    */
-  var exports = function() {
+  var exports = function () {
     /**
      * The base URL against which to resolve every API call's (relative) path.
      * @type {String}
      * @default https://api.sandbox.deliveree.com/public_api/v1
      */
-    this.basePath = 'https://api.sandbox.deliveree.com/public_api/v1'.replace(/\/+$/, '');
+    this.basePath = "https://api.sandbox.deliveree.com/public_api/v1".replace(
+      /\/+$/,
+      ""
+    );
 
     /**
      * The authentication methods to be included for all API calls.
      * @type {Array.<String>}
      */
     this.authentications = {
-      'ApiKeyAuth': {type: 'apiKey', 'in': 'header', name: 'Authorization'}
+      ApiKeyAuth: { type: "apiKey", in: "header", name: "Authorization" },
     };
     /**
      * The default HTTP headers to be included for all API calls.
@@ -82,7 +85,7 @@
      * Used to save and return cookies in a node.js (non-browser) setting,
      * if this.enableCookies is set to true.
      */
-    if (typeof window === 'undefined') {
+    if (typeof window === "undefined") {
       this.agent = new superagent.agent();
     }
 
@@ -97,9 +100,9 @@
    * @param param The actual parameter.
    * @returns {String} The string representation of <code>param</code>.
    */
-  exports.prototype.paramToString = function(param) {
+  exports.prototype.paramToString = function (param) {
     if (param == undefined || param == null) {
-      return '';
+      return "";
     }
     if (param instanceof Date) {
       return param.toISOString();
@@ -114,13 +117,13 @@
    * @param {Object} pathParams The parameter values to append.
    * @returns {String} The encoded path with parameter values substituted.
    */
-  exports.prototype.buildUrl = function(path, pathParams) {
+  exports.prototype.buildUrl = function (path, pathParams) {
     if (!path.match(/^\//)) {
-      path = '/' + path;
+      path = "/" + path;
     }
     var url = this.basePath + path;
     var _this = this;
-    url = url.replace(/\{([\w-]+)\}/g, function(fullMatch, key) {
+    url = url.replace(/\{([\w-]+)\}/g, function (fullMatch, key) {
       var value;
       if (pathParams.hasOwnProperty(key)) {
         value = _this.paramToString(pathParams[key]);
@@ -143,8 +146,10 @@
    * @param {String} contentType The MIME content type to check.
    * @returns {Boolean} <code>true</code> if <code>contentType</code> represents JSON, otherwise <code>false</code>.
    */
-  exports.prototype.isJsonMime = function(contentType) {
-    return Boolean(contentType != null && contentType.match(/^application\/json(;.*)?$/i));
+  exports.prototype.isJsonMime = function (contentType) {
+    return Boolean(
+      contentType != null && contentType.match(/^application\/json(;.*)?$/i)
+    );
   };
 
   /**
@@ -152,7 +157,7 @@
    * @param {Array.<String>} contentTypes
    * @returns {String} The chosen content type, preferring JSON.
    */
-  exports.prototype.jsonPreferredMime = function(contentTypes) {
+  exports.prototype.jsonPreferredMime = function (contentTypes) {
     for (var i = 0; i < contentTypes.length; i++) {
       if (this.isJsonMime(contentTypes[i])) {
         return contentTypes[i];
@@ -166,27 +171,27 @@
    * @param param The parameter to check.
    * @returns {Boolean} <code>true</code> if <code>param</code> represents a file.
    */
-  exports.prototype.isFileParam = function(param) {
+  exports.prototype.isFileParam = function (param) {
     // fs.ReadStream in Node.js and Electron (but not in runtime like browserify)
-    if (typeof require === 'function') {
+    if (typeof require === "function") {
       var fs;
       try {
-        fs = require('fs');
+        fs = require("fs");
       } catch (err) {}
       if (fs && fs.ReadStream && param instanceof fs.ReadStream) {
         return true;
       }
     }
     // Buffer in Node.js
-    if (typeof Buffer === 'function' && param instanceof Buffer) {
+    if (typeof Buffer === "function" && param instanceof Buffer) {
       return true;
     }
     // Blob in browser
-    if (typeof Blob === 'function' && param instanceof Blob) {
+    if (typeof Blob === "function" && param instanceof Blob) {
       return true;
     }
     // File in browser (it seems File object is also instance of Blob, but keep this for safe)
-    if (typeof File === 'function' && param instanceof File) {
+    if (typeof File === "function" && param instanceof File) {
       return true;
     }
     return false;
@@ -202,10 +207,14 @@
    * @param {Object.<String, Object>} params The parameters as object properties.
    * @returns {Object.<String, Object>} normalized parameters.
    */
-  exports.prototype.normalizeParams = function(params) {
+  exports.prototype.normalizeParams = function (params) {
     var newParams = {};
     for (var key in params) {
-      if (params.hasOwnProperty(key) && params[key] != undefined && params[key] != null) {
+      if (
+        params.hasOwnProperty(key) &&
+        params[key] != undefined &&
+        params[key] != null
+      ) {
         var value = params[key];
         if (this.isFileParam(value) || Array.isArray(value)) {
           newParams[key] = value;
@@ -227,27 +236,27 @@
      * Comma-separated values. Value: <code>csv</code>
      * @const
      */
-    CSV: ',',
+    CSV: ",",
     /**
      * Space-separated values. Value: <code>ssv</code>
      * @const
      */
-    SSV: ' ',
+    SSV: " ",
     /**
      * Tab-separated values. Value: <code>tsv</code>
      * @const
      */
-    TSV: '\t',
+    TSV: "\t",
     /**
      * Pipe(|)-separated values. Value: <code>pipes</code>
      * @const
      */
-    PIPES: '|',
+    PIPES: "|",
     /**
      * Native array. Value: <code>multi</code>
      * @const
      */
-    MULTI: 'multi'
+    MULTI: "multi",
   };
 
   /**
@@ -257,24 +266,27 @@
    * @returns {String|Array} A string representation of the supplied collection, using the specified delimiter. Returns
    * <code>param</code> as is if <code>collectionFormat</code> is <code>multi</code>.
    */
-  exports.prototype.buildCollectionParam = function buildCollectionParam(param, collectionFormat) {
+  exports.prototype.buildCollectionParam = function buildCollectionParam(
+    param,
+    collectionFormat
+  ) {
     if (param == null) {
       return null;
     }
     switch (collectionFormat) {
-      case 'csv':
-        return param.map(this.paramToString).join(',');
-      case 'ssv':
-        return param.map(this.paramToString).join(' ');
-      case 'tsv':
-        return param.map(this.paramToString).join('\t');
-      case 'pipes':
-        return param.map(this.paramToString).join('|');
-      case 'multi':
+      case "csv":
+        return param.map(this.paramToString).join(",");
+      case "ssv":
+        return param.map(this.paramToString).join(" ");
+      case "tsv":
+        return param.map(this.paramToString).join("\t");
+      case "pipes":
+        return param.map(this.paramToString).join("|");
+      case "multi":
         // return the array directly as SuperAgent will handle it as expected
         return param.map(this.paramToString);
       default:
-        throw new Error('Unknown collection format: ' + collectionFormat);
+        throw new Error("Unknown collection format: " + collectionFormat);
     }
   };
 
@@ -283,38 +295,38 @@
    * @param {Object} request The request object created by a <code>superagent()</code> call.
    * @param {Array.<String>} authNames An array of authentication method names.
    */
-  exports.prototype.applyAuthToRequest = function(request, authNames) {
+  exports.prototype.applyAuthToRequest = function (request, authNames) {
     var _this = this;
-    authNames.forEach(function(authName) {
+    authNames.forEach(function (authName) {
       var auth = _this.authentications[authName];
       switch (auth.type) {
-        case 'basic':
+        case "basic":
           if (auth.username || auth.password) {
-            request.auth(auth.username || '', auth.password || '');
+            request.auth(auth.username || "", auth.password || "");
           }
           break;
-        case 'apiKey':
+        case "apiKey":
           if (auth.apiKey) {
             var data = {};
             if (auth.apiKeyPrefix) {
-              data[auth.name] = auth.apiKeyPrefix + ' ' + auth.apiKey;
+              data[auth.name] = auth.apiKeyPrefix + " " + auth.apiKey;
             } else {
               data[auth.name] = auth.apiKey;
             }
-            if (auth['in'] === 'header') {
+            if (auth["in"] === "header") {
               request.set(data);
             } else {
               request.query(data);
             }
           }
           break;
-        case 'oauth2':
+        case "oauth2":
           if (auth.accessToken) {
-            request.set({'Authorization': 'Bearer ' + auth.accessToken});
+            request.set({ Authorization: "Bearer " + auth.accessToken });
           }
           break;
         default:
-          throw new Error('Unknown authentication type: ' + auth.type);
+          throw new Error("Unknown authentication type: " + auth.type);
       }
     });
   };
@@ -335,7 +347,12 @@
     // Rely on SuperAgent for parsing response body.
     // See http://visionmedia.github.io/superagent/#parsing-response-bodies
     var data = response.body;
-    if (data == null || (typeof data === 'object' && typeof data.length === 'undefined' && !Object.keys(data).length)) {
+    if (
+      data == null ||
+      (typeof data === "object" &&
+        typeof data.length === "undefined" &&
+        !Object.keys(data).length)
+    ) {
       // SuperAgent does not always produce a body; use the unparsed response as a fallback
       data = response.text;
     }
@@ -368,10 +385,21 @@
    * @param {module:ApiClient~callApiCallback} callback The callback function.
    * @returns {Object} The SuperAgent request object.
    */
-  exports.prototype.callApi = function callApi(path, httpMethod, pathParams,
-      queryParams, collectionQueryParams, headerParams, formParams, bodyParam, authNames, contentTypes, accepts,
-      returnType, callback) {
-
+  exports.prototype.callApi = function callApi(
+    path,
+    httpMethod,
+    pathParams,
+    queryParams,
+    collectionQueryParams,
+    headerParams,
+    formParams,
+    bodyParam,
+    authNames,
+    contentTypes,
+    accepts,
+    returnType,
+    callback
+  ) {
     var _this = this;
     var url = this.buildUrl(path, pathParams);
     var request = superagent(httpMethod, url);
@@ -383,30 +411,35 @@
     for (var key in collectionQueryParams) {
       if (collectionQueryParams.hasOwnProperty(key)) {
         var param = collectionQueryParams[key];
-        if (param.collectionFormat === 'csv') {
+        if (param.collectionFormat === "csv") {
           // SuperAgent normally percent-encodes all reserved characters in a query parameter. However,
           // commas are used as delimiters for the 'csv' collectionFormat so they must not be encoded. We
           // must therefore construct and encode 'csv' collection query parameters manually.
           if (param.value != null) {
-            var value = param.value.map(this.paramToString).map(encodeURIComponent).join(',');
+            var value = param.value
+              .map(this.paramToString)
+              .map(encodeURIComponent)
+              .join(",");
             request.query(encodeURIComponent(key) + "=" + value);
           }
         } else {
           // All other collection query parameters should be treated as ordinary query parameters.
-          queryParams[key] = this.buildCollectionParam(param.value, param.collectionFormat);
+          queryParams[key] = this.buildCollectionParam(
+            param.value,
+            param.collectionFormat
+          );
         }
       }
     }
 
     // set query parameters
-    if (httpMethod.toUpperCase() === 'GET' && this.cache === false) {
-        queryParams['_'] = new Date().getTime();
+    if (httpMethod.toUpperCase() === "GET" && this.cache === false) {
+      queryParams["_"] = new Date().getTime();
     }
     request.query(this.normalizeParams(queryParams));
 
     // set header parameters
     request.set(this.defaultHeaders).set(this.normalizeParams(headerParams));
-
 
     // set requestAgent if it is set by user
     if (this.requestAgent) {
@@ -419,16 +452,16 @@
     var contentType = this.jsonPreferredMime(contentTypes);
     if (contentType) {
       // Issue with superagent and multipart/form-data (https://github.com/visionmedia/superagent/issues/746)
-      if(contentType != 'multipart/form-data') {
+      if (contentType != "multipart/form-data") {
         request.type(contentType);
       }
-    } else if (!request.header['Content-Type']) {
-      request.type('application/json');
+    } else if (!request.header["Content-Type"]) {
+      request.type("application/json");
     }
 
-    if (contentType === 'application/x-www-form-urlencoded') {
+    if (contentType === "application/x-www-form-urlencoded") {
       request.send(querystring.stringify(this.normalizeParams(formParams)));
-    } else if (contentType == 'multipart/form-data') {
+    } else if (contentType == "multipart/form-data") {
       var _formParams = this.normalizeParams(formParams);
       for (var key in _formParams) {
         if (_formParams.hasOwnProperty(key)) {
@@ -449,30 +482,28 @@
       request.accept(accept);
     }
 
-    if (returnType === 'Blob') {
-      request.responseType('blob');
-    } else if (returnType === 'String') {
-      request.responseType('string');
+    if (returnType === "Blob") {
+      request.responseType("blob");
+    } else if (returnType === "String") {
+      request.responseType("string");
     }
 
     // Attach previously saved cookies, if enabled
-    if (this.enableCookies){
-      if (typeof window === 'undefined') {
+    if (this.enableCookies) {
+      if (typeof window === "undefined") {
         this.agent.attachCookies(request);
-      }
-      else {
+      } else {
         request.withCredentials();
       }
     }
 
-
-    request.end(function(error, response) {
+    request.end(function (error, response) {
       if (callback) {
         var data = null;
         if (!error) {
           try {
             data = _this.deserialize(response, returnType);
-            if (_this.enableCookies && typeof window === 'undefined'){
+            if (_this.enableCookies && typeof window === "undefined") {
               _this.agent.saveCookies(response);
             }
           } catch (err) {
@@ -491,10 +522,10 @@
    * @param {String} str The date value as an ISO-8601 full-date or date-time string.
    * @returns {Date} The parsed date object.
    */
-  exports.parseDate = function(str) {
+  exports.parseDate = function (str) {
     // OpenAPI 2.0 & 3.0 specs state that:
-    // - date values are serialized as ISO-8601 full-date strings. 
-    // - date-time values are serialized as ISO-8601 date-time strings, in which the timezone offset is mandatory. 
+    // - date values are serialized as ISO-8601 full-date strings.
+    // - date-time values are serialized as ISO-8601 date-time strings, in which the timezone offset is mandatory.
     return new Date(str);
   };
 
@@ -507,37 +538,36 @@
    * all properties on <code>data<code> will be converted to this type.
    * @returns An instance of the specified type or null or undefined if data is null or undefined.
    */
-  exports.convertToType = function(data, type) {
-    if (data === null || data === undefined)
-      return data
+  exports.convertToType = function (data, type) {
+    if (data === null || data === undefined) return data;
 
     switch (type) {
-      case 'Boolean':
+      case "Boolean":
         return Boolean(data);
-      case 'Integer':
+      case "Integer":
         return parseInt(data, 10);
-      case 'Number':
+      case "Number":
         return parseFloat(data);
-      case 'String':
+      case "String":
         return String(data);
-      case 'Date':
+      case "Date":
         return this.parseDate(String(data));
-      case 'Blob':
-      	return data;
+      case "Blob":
+        return data;
       default:
         if (type === Object) {
           // generic object, return directly
           return data;
-        } else if (typeof type === 'function') {
+        } else if (typeof type === "function") {
           // for model type like: User
           return type.constructFromObject(data);
         } else if (Array.isArray(type)) {
           // for array type like: ['String']
           var itemType = type[0];
-          return data.map(function(item) {
+          return data.map(function (item) {
             return exports.convertToType(item, itemType);
           });
-        } else if (typeof type === 'object') {
+        } else if (typeof type === "object") {
           // for plain object type like: {'String': 'Integer'}
           var keyType, valueType;
           for (var k in type) {
@@ -568,7 +598,7 @@
    * @param data {Object|Array} The REST data.
    * @param obj {Object|Array} The target object or array.
    */
-  exports.constructFromObject = function(data, obj, itemType) {
+  exports.constructFromObject = function (data, obj, itemType) {
     if (Array.isArray(data)) {
       for (var i = 0; i < data.length; i++) {
         if (data.hasOwnProperty(i))
@@ -588,5 +618,4 @@
    */
   exports.instance = new exports();
   return exports;
-  
-}));
+});

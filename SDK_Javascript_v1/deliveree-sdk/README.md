@@ -26,6 +26,7 @@ var DelivereeApi = require("path/to/deliveree-sdk/src/index");
 var defaultClient = DelivereeApi.ApiClient.instance;
 
 // Configure API key authorization: ApiKeyAuth
+  const defaultClient = DelivereeApi.ApiClient.instance;
 var ApiKeyAuth = defaultClient.authentications['ApiKeyAuth'];
 ApiKeyAuth.apiKey = "YOUR API KEY"
 // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
@@ -96,6 +97,7 @@ Then example 1 Get Quotes:
 ```javascript
   var DelivereeApi = import("deliveree-sdk");
   // Basic use
+  const defaultClient = DelivereeApi.ApiClient.instance;
   var ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
   ApiKeyAuth.apiKey = "YOUR API KEY";
 
@@ -130,6 +132,7 @@ Example 2 Create Deliveree booking
 ```javascript 
   var DelivereeApi = import("deliveree-sdk");
 
+  const defaultClient = DelivereeApi.ApiClient.instance;
   var ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
   ApiKeyAuth.apiKey = "YOUR API KEY";
   let api = new DelivereeApi.DelivereeApi();
@@ -168,6 +171,7 @@ Example 3 CancelBooking
   var DelivereeApi = import("deliveree-sdk");
 
   // Basic use
+  const defaultClient = DelivereeApi.ApiClient.instance;
   var ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
   ApiKeyAuth.apiKey = "YOUR API KEY";
 
@@ -189,6 +193,90 @@ Example 3 CancelBooking
 api.cancelBooking(id, opts, callback);
 
 ```
+Example 4 Get delivery booking details
+```javascript
+  var DelivereeApi = import("deliveree-sdk");
+
+  // Basic use
+  const defaultClient = DelivereeApi.ApiClient.instance;
+  var ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
+  ApiKeyAuth.apiKey = "YOUR API KEY";
+
+  var api = new DelivereeApi.DelivereeApi();
+  var id = 56; // {Number} ID of delivery
+
+  var opts = {
+    acceptLanguage: "en" // {String}
+  };
+
+  var callback = function(error, data, response) {
+    if (error) {
+      console.log(error);
+    } else {
+    console.log("API called successfully.");
+    }
+  };
+
+api.deliveriesGet(id, opts, callback);
+
+```
+Example 5 Get delivery booking list
+```javascript
+  var DelivereeApi = import("deliveree-sdk");
+
+  // Basic use
+  const defaultClient = DelivereeApi.ApiClient.instance;
+  var ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
+  ApiKeyAuth.apiKey = "YOUR API KEY";
+
+  var api = new DelivereeApi.DelivereeApi();
+
+  var opts = {
+    acceptLanguage: "en" // {String}
+  };
+
+  var params ={
+    page: 1, // {Number}
+    per_page: 10, // {Number}
+  }
+
+  var callback = function(error, data, response) {
+    if (error) {
+      console.log(error);
+    } else {
+    console.log("API called successfully.");
+    }
+  };
+
+api.deliveriesGetList(params, opts, callback);
+
+```
+Example 4 Get vehicle types
+```javascript
+  var DelivereeApi = import("deliveree-sdk");
+
+  // Basic use
+  const defaultClient = DelivereeApi.ApiClient.instance;
+  var ApiKeyAuth = defaultClient.authentications["ApiKeyAuth"];
+  ApiKeyAuth.apiKey = "YOUR API KEY";
+
+  var api = new DelivereeApi.DelivereeApi();
+
+  var opts = {
+    acceptLanguage: "en" // {String}
+  };
+
+  var callback = function(error, data, response) {
+    if (error) {
+      console.log(error);
+    } else {
+    console.log("API called successfully.");
+    }
+  };
+
+api.vehicleTypesGet(opts, callback);
+
+```
 
 ## Documentation for API Endpoints
 
@@ -199,14 +287,34 @@ Class | Method | HTTP request | Description
 *DelivereeApi.DelivereeApi* | [**cancelBooking**](docs/DelivereeApi.md#cancelBooking) | **POST** /deliveries/{id}/cancel | 
 *DelivereeApi.DelivereeApi* | [**deliveriesGetQuotePost**](docs/DelivereeApi.md#deliveriesGetQuotePost) | **POST** /deliveries/get_quote | 
 *DelivereeApi.DelivereeApi* | [**deliveriesPost**](docs/DelivereeApi.md#deliveriesPost) | **POST** /deliveries | 
+*DelivereeApi.DelivereeApi* | [**deliveriesGet**](docs/DelivereeApi.md#deliveriesGet) | **GET** /deliveries/{id} | 
+*DelivereeApi.DelivereeApi* | [**deliveriesGetList**](docs/DelivereeApi.md#deliveriesGetList) | **GET** /deliveries | 
+*DelivereeApi.DelivereeApi* | [**vehicleTypesGet**](docs/DelivereeApi.md#vehicleTypesGet) | **GET** /vehicle_types | 
+
 
 
 ## Documentation for Models
 
- - [DelivereeApi.Delivery](docs/Delivery.md)
- - [DelivereeApi.Location](docs/Location.md)
- - [DelivereeApi.PositionTracking](docs/PositionTracking.md)
- - [DelivereeApi.Quote](docs/Quote.md)
+### Request
+- [DelivereeApi.QuoteRequest](docs/QuoteRequest.md)
+- [DelivereeApi.CreateDeliveryRequest](docs/CreateDeliveryRequest.md)
+- [DelivereeApi.DeliveryListRequest](docs/DeliveryListRequest.md)
+### Response
+
+- [DelivereeApi.CreateDeliveryResponse](docs/CreateDeliveryResponse.md)
+- [DelivereeApi.QuoteResponse](docs/QuoteResponse.md)
+- [DelivereeApi.QuoteResponseData](docs/QuoteResponseData.md)
+- [DelivereeApi.DeliveryResponse](docs/DeliveryResponse.md)
+- [DelivereeApi.DeliveryResponseList](docs/DeliveryResponseList.md)
+- [DelivereeApi.VehicleTypeResponse](docs/VehicleTypeResponse.md)
+- [DelivereeApi.VehicleTypeResponseList](docs/VehicleTypeResponseList.md)
+- [DelivereeApi.Pagination](docs/Pagination.md)
+- [DelivereeApi.Driver](docs/Driver.md)
+- [DelivereeApi.Location](docs/Location.md)
+- [DelivereeApi.PositionTracking](docs/PositionTracking.md)
+- [DelivereeApi.ProofOfDeliveryPhoto](docs/ProofOfDeliveryPhoto.md)
+- [DelivereeApi.Vehicle](docs/Vehicle.md)
+- [DelivereeApi.VehicleAttribute](docs/VehicleAttribute.md)
 
 
 ## Documentation for Authorization
