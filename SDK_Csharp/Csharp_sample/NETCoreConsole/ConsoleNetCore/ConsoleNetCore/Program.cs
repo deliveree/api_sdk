@@ -5,8 +5,6 @@ using IO.Deliveree.Api;
 using IO.Deliveree.Client;
 using IO.Deliveree.Model;
 using IO.Deliveree.Model.Reponse;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace ConsoleNetCore
 {
@@ -14,7 +12,8 @@ namespace ConsoleNetCore
     {
         static void Main(string[] args)
         {
-            Configuration.Default.ApiKey.Add("Authorization", "_v1MhCyxVohbhWsbJ5x3");
+
+            Configuration.Default.ApiKey.Add("Authorization", "9dyc8dF62oRSKbzG_GK6");
             DeliveryGetQuotes();
             //VehicleTypesGet();
             //AddDelivery();

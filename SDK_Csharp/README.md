@@ -6,7 +6,7 @@ With Deliveree SDK, developers can integrate our on-demand local delivery platfo
 
 <a name="frameworks-supported"></a>
 ## Frameworks supported
-- .NET 4.5.2 or later
+- .NET 4.6 or later
 - .NET CORE 2.1.13 or later
 
 <a name="dependencies"></a>
