@@ -13,7 +13,7 @@ namespace ConsoleNetCore
         static void Main(string[] args)
         {
 
-            Configuration.Default.ApiKey.Add("Authorization", "9dyc8dF62oRSKbzG_GK6");
+            Configuration.Default.ApiKey.Add("Authorization", "[your api key]");
             DeliveryGetQuotes();
             //VehicleTypesGet();
             //AddDelivery();
