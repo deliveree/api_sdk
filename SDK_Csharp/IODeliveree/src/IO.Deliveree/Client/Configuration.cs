@@ -97,7 +97,8 @@ namespace IO.Deliveree.Client
         private IDictionary<string, string> _apiKeyPrefix = null;
 
         private string _dateTimeFormat = ISO8601_DATETIME_FORMAT;
-        private string _tempFolderPath = Path.GetTempPath();
+        private Lazy<string> _lazyTempFolderPath = new Lazy<string>(() => Path.GetTempPath());
+        private string _tempFolderPath;
 
         #endregion Private Members
 
@@ -298,14 +299,14 @@ namespace IO.Deliveree.Client
         /// <value>Folder path.</value>
         public virtual string TempFolderPath
         {
-            get { return _tempFolderPath; }
+            get => _tempFolderPath ??= _lazyTempFolderPath.Value;
 
             set
             {
                 if (string.IsNullOrEmpty(value))
                 {
                     // Possible breaking change since Deliveree 2.2.1, enforce a valid temporary path on set.
-                    _tempFolderPath = Path.GetTempPath();
+                    _tempFolderPath = _lazyTempFolderPath.Value;
                     return;
                 }
 

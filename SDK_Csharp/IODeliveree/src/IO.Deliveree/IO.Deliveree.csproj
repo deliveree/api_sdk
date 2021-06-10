@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
+		<LangVersion>latest</LangVersion>
 		<OutputType>Library</OutputType>
-		<TargetFrameworks>net452;netcoreapp2.1</TargetFrameworks>
+		<TargetFrameworks>net46;netcoreapp2.1</TargetFrameworks>
 		<PackageId>IO.Deliveree</PackageId>
-		<Version>1.0.5</Version>
+		<Version>1.0.10</Version>
 		<Authors>duke@deliveree.com</Authors>
 		<PackageProjectUrl>https://deliveree.com</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/deliveree/api_sdk.git</RepositoryUrl>
@@ -34,6 +35,6 @@ Contact: duke@deliveree.com
 		<Reference Include="System.Xml" />
 		<PackageReference Include="Newtonsoft.Json" Version="10.0.3" PrivateAssets="none" />
 		<PackageReference Include="JsonSubTypes" Version="1.2.0" PrivateAssets="none" />
-		<PackageReference Include="RestSharp" Version="106.0.0"  PrivateAssets="none" />
+		<PackageReference Include="RestSharp" Version="106.0.0" PrivateAssets="none" />
 	</ItemGroup>
 </Project>
