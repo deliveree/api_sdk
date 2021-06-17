@@ -121,5 +121,63 @@ namespace ApiSample {
 
     }
 
+    
+      /**
+       * @param $id
+       * @return string
+       * @throws GuzzleException
+       */
+      public  function deliveriesGet($id)
+      {   $result = null;
+          $apiInstance = new DelivereeApi(null, $this->config);
+          try {
+            return $apiInstance->deliveriesGet($id);
+              
+          } catch (Exception $e) {
+              //Echo "Exception: " . $e->getMessage();
+              return $e->getMessage();
+          }
+  
+      }
+
+      public function deliveriesGetList() {
+        $result = null;
+        $apiInstance = new DelivereeApi(
+            null,
+            $this->config
+        );
+        $accept_language = "en"; // string | 
+        $quote = (object)[
+            'page' => 1,
+            'per_page' => 10,
+        ];
+          
+        try {
+            $result = $apiInstance->deliveriesGetList($quote, $accept_language);
+        } catch (Exception $e) {
+            echo 'Exception: ', $e->getMessage(), PHP_EOL;
+        }
+
+        return $result;
+      }
+
+      
+      public function vehicleTypesGet() {
+        $result = null;
+        $apiInstance = new DelivereeApi(
+            null,
+            $this->config
+        );
+        $accept_language = "en"; // string | 
+          
+        try {
+            $result = $apiInstance->vehicleTypesGet($accept_language);
+        } catch (Exception $e) {
+            echo 'Exception: ', $e->getMessage(), PHP_EOL;
+        }
+
+        return $result;
+      }
+
   }
 }

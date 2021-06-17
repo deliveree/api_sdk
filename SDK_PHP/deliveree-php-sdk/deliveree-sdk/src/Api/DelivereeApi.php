@@ -701,7 +701,7 @@ class DelivereeApi
      * @return \GuzzleHttp\Promise\PromiseInterface
      *@throws InvalidArgumentException
      */
-    public function deliveriesPostAsync($body, $accept_language = null)
+    public function deliveriesPostAsync(object $body, $accept_language = null)
     {
         return $this->deliveriesPostAsyncWithHttpInfo($body, $accept_language)
             ->then(
@@ -866,7 +866,844 @@ class DelivereeApi
             $httpBody
         );
     }
+   
 
+ /**
+     * Operation deliveriesGet
+     *
+     * @param int $id ID of delivery (required)
+     * @param string $accept_language accept_language (optional)
+     *
+     * @return void
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function deliveriesGet($id, $accept_language = null)
+    {
+        list($response) =   $this->deliveriesGetWithHttpInfo($id, $accept_language);
+        return $response;
+    }
+
+    /**
+     * Operation deliveriesGetWithHttpInfo
+     *
+     * @param int $id ID of delivery (required)
+     * @param string $accept_language (optional)
+     *
+     * @return array of null, HTTP status code, HTTP response headers (array of strings)
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function deliveriesGetWithHttpInfo($id, $accept_language = null)
+    {
+        $returnType = 'object';
+        $request = $this->deliveriesGetRequest($id, $accept_language);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+
+                $uri = $request->getUri();
+                $uri = static::obfuscateUri($uri);
+                $errorMessage = str_replace($uri, "request", $e->getMessage());
+                throw new ApiException(
+                    "[{$e->getCode()}] {$errorMessage}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+
+    /**
+     * Operation deliveriesGetAsync
+     *
+     * 
+     *
+     * @param  int $id ID of delivery (required)
+     * @param  string $accept_language (optional)
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     *@throws InvalidArgumentException
+     */
+    public function deliveriesGetAsync($id, $accept_language = null)
+    {
+        return $this->deliveriesGetAsyncWithHttpInfo($id, $accept_language)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+
+        /**
+     * Operation deliveriesGetAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param  Quote $body (required)
+     * @param  string $accept_language (optional)
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     *@throws InvalidArgumentException
+     */
+    public function deliveriesGetAsyncWithHttpInfo($id, $accept_language = null)
+    {
+        $returnType = 'object';
+        $request = $this->deliveriesGetRequest($id, $accept_language);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deliveriesGet'
+     *
+     * @param  int $id ID of delivery (required)
+     * @param  string $accept_language (optional)
+     *
+     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     */
+    protected function deliveriesGetRequest($id, $accept_language = null)
+    {
+        // verify the required parameter 'id' is set
+        if ($id === null || (is_array($id) && count($id) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $id when calling deliveriesGet'
+            );
+        }
+
+        $resourcePath = '/deliveries/{id}';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // header params
+        if ($accept_language !== null) {
+            $headerParams['Accept-Language'] = ObjectSerializer::toHeaderValue($accept_language);
+        }
+
+        // path params
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                '{' . 'id' . '}',
+                ObjectSerializer::toPathValue($id),
+                $resourcePath
+            );
+        }
+
+        // body params
+        $_tempBody = null;
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/xml', 'application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/xml', 'application/json'],
+                ['application/json', 'application/xml']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+       
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+
+
+
+
+       /**
+     * Operation deliveriesGetList
+     *
+     * @param Quote $body body (required)
+     * @param string $accept_language accept_language (optional)
+     *
+     * @return object
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function deliveriesGetList(object $body, $accept_language = null)
+    {
+        list($response) = $this->deliveriesGetListWithHttpInfo($body, $accept_language);
+        return $response;
+    }
+
+    /**
+     * Operation deliveriesGetListWithHttpInfo
+     *
+     * @param Quote $body (required)
+     * @param string $accept_language (optional)
+     *
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function deliveriesGetListWithHttpInfo($body, $accept_language = null)
+    {
+        $returnType = 'object';
+        $request = $this->deliveriesGetListRequest($body, $accept_language);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+
+                $uri = $request->getUri();
+                $uri = static::obfuscateUri($uri);
+                $errorMessage = str_replace($uri, "request", $e->getMessage());
+                throw new ApiException(
+                    "[{$e->getCode()}] {$errorMessage}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation deliveriesGetListAsync
+     *
+     * 
+     *
+     * @param  Quote $body (required)
+     * @param  string $accept_language (optional)
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     *@throws InvalidArgumentException
+     */
+    public function deliveriesGetListAsync($body, $accept_language = null)
+    {
+        return $this->deliveriesGetListAsyncWithHttpInfo($body, $accept_language)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation deliveriesGetListAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param  Quote $body (required)
+     * @param  string $accept_language (optional)
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     *@throws InvalidArgumentException
+     */
+    public function deliveriesGetListAsyncWithHttpInfo($body, $accept_language = null)
+    {
+        $returnType = 'object';
+        $request = $this->deliveriesGetListRequest($body, $accept_language);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'deliveriesGetList'
+     *
+     * @param  Quote $body (required)
+     * @param  string $accept_language (optional)
+     *
+     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     */
+    protected function deliveriesGetListRequest($body, $accept_language = null)
+    {
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $body when calling deliveriesGetList'
+            );
+        }
+
+        $resourcePath = '/deliveries';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // header params
+        if ($accept_language !== null) {
+            $headerParams['Accept-Language'] = ObjectSerializer::toHeaderValue($accept_language);
+        }
+
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/xml', 'application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/xml', 'application/json'],
+                ['application/json', 'application/xml']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+          
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+
+    
+       /**
+     * Operation vehicleTypesGet
+     *
+     * @param Quote $body body (required)
+     * @param string $accept_language accept_language (optional)
+     *
+     * @return object
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function vehicleTypesGet($accept_language = null, object $body = null)
+    {
+        $body = ($body == null)? new \stdClass(): $body;
+        list($response) = $this->vehicleTypesGetWithHttpInfo($body, $accept_language);
+        return $response;
+    }
+
+    /**
+     * Operation vehicleTypesGetWithHttpInfo
+     *
+     * @param Quote $body (required)
+     * @param string $accept_language (optional)
+     *
+     * @return array of object, HTTP status code, HTTP response headers (array of strings)
+     * @throws InvalidArgumentException
+     * @throws ApiException on non-2xx response
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function vehicleTypesGetWithHttpInfo($body, $accept_language = null)
+    {
+        $returnType = 'object';
+        $request = $this->vehicleTypesGetRequest($body, $accept_language);
+
+        try {
+            $options = $this->createHttpClientOption();
+            try {
+                $response = $this->client->send($request, $options);
+            } catch (RequestException $e) {
+
+                $uri = $request->getUri();
+                $uri = static::obfuscateUri($uri);
+                $errorMessage = str_replace($uri, "request", $e->getMessage());
+                throw new ApiException(
+                    "[{$e->getCode()}] {$errorMessage}",
+                    $e->getCode(),
+                    $e->getResponse() ? $e->getResponse()->getHeaders() : null,
+                    $e->getResponse() ? $e->getResponse()->getBody()->getContents() : null
+                );
+            }
+
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode < 200 || $statusCode > 299) {
+                throw new ApiException(
+                    sprintf(
+                        '[%d] Error connecting to the API (%s)',
+                        $statusCode,
+                        $request->getUri()
+                    ),
+                    $statusCode,
+                    $response->getHeaders(),
+                    $response->getBody()
+                );
+            }
+
+            $responseBody = $response->getBody();
+            if ($returnType === '\SplFileObject') {
+                $content = $responseBody; //stream goes to serializer
+            } else {
+                $content = $responseBody->getContents();
+                if (!in_array($returnType, ['string','integer','bool'])) {
+                    $content = json_decode($content);
+                }
+            }
+
+            return [
+                ObjectSerializer::deserialize($content, $returnType, []),
+                $response->getStatusCode(),
+                $response->getHeaders()
+            ];
+
+        } catch (ApiException $e) {
+            switch ($e->getCode()) {
+                case 200:
+                    $data = ObjectSerializer::deserialize(
+                        $e->getResponseBody(),
+                        'object',
+                        $e->getResponseHeaders()
+                    );
+                    $e->setResponseObject($data);
+                    break;
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Operation vehicleTypesGetAsync
+     *
+     * 
+     *
+     * @param  Quote $body (required)
+     * @param  string $accept_language (optional)
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     *@throws InvalidArgumentException
+     */
+    public function vehicleTypesGetAsync($accept_language = null,object $body  = null)
+    {
+        $body = ($body == null)? new \stdClass(): $body;
+        return $this->vehicleTypesGetAsyncWithHttpInfo($body, $accept_language)
+            ->then(
+                function ($response) {
+                    return $response[0];
+                }
+            );
+    }
+
+    /**
+     * Operation vehicleTypesGetAsyncWithHttpInfo
+     *
+     * 
+     *
+     * @param  Quote $body (required)
+     * @param  string $accept_language (optional)
+     *
+     * @return \GuzzleHttp\Promise\PromiseInterface
+     *@throws InvalidArgumentException
+     */
+    public function vehicleTypesGetAsyncWithHttpInfo($body, $accept_language = null)
+    {
+        $returnType = 'object';
+        $request = $this->vehicleTypesGetRequest($body, $accept_language);
+
+        return $this->client
+            ->sendAsync($request, $this->createHttpClientOption())
+            ->then(
+                function ($response) use ($returnType) {
+                    $responseBody = $response->getBody();
+                    if ($returnType === '\SplFileObject') {
+                        $content = $responseBody; //stream goes to serializer
+                    } else {
+                        $content = $responseBody->getContents();
+                        if ($returnType !== 'string') {
+                            $content = json_decode($content);
+                        }
+                    }
+
+                    return [
+                        ObjectSerializer::deserialize($content, $returnType, []),
+                        $response->getStatusCode(),
+                        $response->getHeaders()
+                    ];
+                },
+                function ($exception) {
+                    $response = $exception->getResponse();
+                    $statusCode = $response->getStatusCode();
+                    throw new ApiException(
+                        sprintf(
+                            '[%d] Error connecting to the API (%s)',
+                            $statusCode,
+                            $exception->getRequest()->getUri()
+                        ),
+                        $statusCode,
+                        $response->getHeaders(),
+                        $response->getBody()
+                    );
+                }
+            );
+    }
+
+    /**
+     * Create request for operation 'vehicleTypesGet'
+     *
+     * @param  Quote $body (required)
+     * @param  string $accept_language (optional)
+     *
+     * @return \GuzzleHttp\Psr7\Request
+     * @throws InvalidArgumentException
+     */
+    protected function vehicleTypesGetRequest($body, $accept_language = null)
+    {
+        // verify the required parameter 'body' is set
+        if ($body === null || (is_array($body) && count($body) === 0)) {
+            throw new InvalidArgumentException(
+                'Missing the required parameter $body when calling vehicleTypesGet'
+            );
+        }
+
+        $resourcePath = '/vehicle_types';
+        $formParams = [];
+        $queryParams = [];
+        $headerParams = [];
+        $httpBody = '';
+        $multipart = false;
+
+        // header params
+        if ($accept_language !== null) {
+            $headerParams['Accept-Language'] = ObjectSerializer::toHeaderValue($accept_language);
+        }
+
+
+        // body params
+        $_tempBody = null;
+        if (isset($body)) {
+            $_tempBody = $body;
+        }
+
+        if ($multipart) {
+            $headers = $this->headerSelector->selectHeadersForMultipart(
+                ['application/xml', 'application/json']
+            );
+        } else {
+            $headers = $this->headerSelector->selectHeaders(
+                ['application/xml', 'application/json'],
+                ['application/json', 'application/xml']
+            );
+        }
+
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            // $_tempBody is the method argument, if present
+            $httpBody = $_tempBody;
+            // \stdClass has no __toString(), so we should encode it manually
+            if ($httpBody instanceof \stdClass && $headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($httpBody);
+            }
+          
+        } elseif (count($formParams) > 0) {
+            if ($multipart) {
+                $multipartContents = [];
+                foreach ($formParams as $formParamName => $formParamValue) {
+                    $multipartContents[] = [
+                        'name' => $formParamName,
+                        'contents' => $formParamValue
+                    ];
+                }
+                // for HTTP post (form)
+                $httpBody = new MultipartStream($multipartContents);
+
+            } elseif ($headers['Content-Type'] === 'application/json') {
+                $httpBody = \GuzzleHttp\json_encode($formParams);
+
+            } else {
+                // for HTTP post (form)
+                $httpBody = \GuzzleHttp\Psr7\build_query($formParams);
+            }
+        }
+
+        // this endpoint requires API key authentication
+        $apiKey = $this->config->getApiKeyWithPrefix('Authorization');
+        if ($apiKey !== null) {
+            $headers['Authorization'] = $apiKey;
+        }
+
+        $defaultHeaders = [];
+        if ($this->config->getUserAgent()) {
+            $defaultHeaders['User-Agent'] = $this->config->getUserAgent();
+        }
+        $headers = array_merge(
+            $defaultHeaders,
+            $headerParams,
+            $headers
+        );
+
+        $query = \GuzzleHttp\Psr7\build_query($queryParams);
+        return new Request(
+            'GET',
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
+            $headers,
+            $httpBody
+        );
+    }
+
+    
     /**
      * Create http client option
      *
