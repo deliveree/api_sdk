@@ -53,7 +53,7 @@ Manual require file
 <?php
 require_once('/path/to/deliveree-php-sdk/deliveree-sdk/vendor/autoload.php');
 
-## Cancel Booking
+## Example 1 Cancel Booking
 // Configure API key authorization: ApiKeyAuth
 $config = Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -74,7 +74,7 @@ try {
     echo 'Exception when calling DelivereeApi->cancelBooking: ', $e->getMessage(), PHP_EOL;
 }
 
-## Get Quote 
+## Example 2 Get Quote 
 // Configure API key authorization: ApiKeyAuth
 $config = Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -96,7 +96,7 @@ try {
     echo 'Exception when calling DelivereeApi->deliveriesGetQuotePost: ', $e->getMessage(), PHP_EOL;
 }
 
-## Create Booking or Delivery
+## Example 3 Create Booking or Delivery
 // Configure API key authorization: ApiKeyAuth
 $config = Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
 // Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
@@ -116,6 +116,76 @@ try {
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling DelivereeApi->deliveriesPost: ', $e->getMessage(), PHP_EOL;
+}
+
+## Example 4 Get Deliveries
+// Configure API key authorization: ApiKeyAuth
+$config = Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+$apiInstance = new Deliveree\Client\Api\DelivereeApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+$delivery_id = 3000; // {Number} ID of delivery
+$accept_language = "accept_language_example"; // string | 
+
+try {
+    $result = $apiInstance->deliveriesGet($delivery_id,$accept_language);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DelivereeApi->deliveriesGet: ', $e->getMessage(), PHP_EOL;
+}
+
+## Example 5 Get delivery booking list
+// Configure API key authorization: ApiKeyAuth
+$config = Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+$apiInstance = new Deliveree\Client\Api\DelivereeApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+$params = (object)[
+            'page' => 1, // {Number}
+            'per_page' => 10, // {Number}
+        ];
+$accept_language = "accept_language_example"; // string | 
+
+try {
+    $result = $apiInstance->deliveriesGetList($params,$accept_language);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DelivereeApi->deliveriesGetList: ', $e->getMessage(), PHP_EOL;
+}
+
+## Example 6 Get vehicle types
+// Configure API key authorization: ApiKeyAuth
+$config = Configuration::getDefaultConfiguration()->setApiKey('Authorization', 'YOUR_API_KEY');
+// Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+// $config = Configuration::getDefaultConfiguration()->setApiKeyPrefix('Authorization', 'Bearer');
+
+$apiInstance = new Deliveree\Client\Api\DelivereeApi(
+    // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
+    // This is optional, `GuzzleHttp\Client` will be used as default.
+    new GuzzleHttp\Client(),
+    $config
+);
+
+$accept_language = "accept_language_example"; // string | 
+
+try {
+    $result = $apiInstance->vehicleTypesGet($accept_language);
+    print_r($result);
+} catch (Exception $e) {
+    echo 'Exception when calling DelivereeApi->vehicleTypesGet: ', $e->getMessage(), PHP_EOL;
 }
 ?>
 ```
@@ -138,6 +208,9 @@ Class | Method | HTTP request | Description
 *DelivereeApi* | [**cancelBooking**](docs/Api/DelivereeApi.md#cancelbooking) | **POST** /deliveries/{id}/cancel | 
 *DelivereeApi* | [**deliveriesGetQuotePost**](docs/Api/DelivereeApi.md#deliveriesgetquotepost) | **POST** /deliveries/get_quote | 
 *DelivereeApi* | [**deliveriesPost**](docs/Api/DelivereeApi.md#deliveriespost) | **POST** /deliveries | 
+*DelivereeApi* | [**deliveriesGet**](docs/Api/DelivereeApi.md#deliveriesget) | **GET** /deliveries/{id} | 
+*DelivereeApi* | [**deliveriesGetList**](docs/Api/DelivereeApi.md#deliveriesgetlist) | **GET** /deliveries | 
+*DelivereeApi* | [**vehicleTypesGet**](docs/Api/DelivereeApi.md#vehicletypesget) | **GET** /vehicle_types | 
 
 Documentation For Models
 
