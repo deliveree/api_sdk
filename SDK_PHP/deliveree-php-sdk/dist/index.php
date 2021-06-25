@@ -10,6 +10,12 @@
 
     $cancelResult = $apiInstance->cancelBooking(null);
 
+    $deliveriesGet = $apiInstance->deliveriesGet(null);
+
+    $deliveriesGetList = $apiInstance->deliveriesGetList();
+
+    $vehicleTypesGet = $apiInstance->vehicleTypesGet();
+    
 ?>
 
 <!DOCTYPE html>

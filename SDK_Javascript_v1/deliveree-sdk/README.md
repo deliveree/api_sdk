@@ -251,7 +251,7 @@ Example 5 Get delivery booking list
 api.deliveriesGetList(params, opts, callback);
 
 ```
-Example 4 Get vehicle types
+Example 6 Get vehicle types
 ```javascript
   var DelivereeApi = import("deliveree-sdk");
 
