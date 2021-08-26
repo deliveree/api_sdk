@@ -3,7 +3,7 @@ from toml import load
 from pathlib import Path
 
 
-def load_conf(folder_name="src/conf"):
+def load_conf(folder_name="conf"):
     """ Loads all conf from all files inside a given folder.
     Args:
         folder_name (str): Path to the folder

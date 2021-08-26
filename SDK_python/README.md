@@ -28,6 +28,7 @@ After getting API key and example data from duke@deliveree.com, you can start te
     >>> SdkPython().get_quote(
             api_key,
             time_type,
+            pickup_time,
             vehicle_type_id,
             packs,
             locations
@@ -46,7 +47,7 @@ After getting API key and example data from duke@deliveree.com, you can start te
 
 ### 4. Get Booking by ID
 ```shell
-    >>> SdkPython().get_dlvr(id)
+    >>> SdkPython().get_dlvr(api_key,id)
 ```
 
 ### 5. Create Booking
@@ -64,5 +65,5 @@ After getting API key and example data from duke@deliveree.com, you can start te
 
 ### 6. Cancel Booking by ID
 ```shell
-    >>> SdkPython().cancel_dlvr(id)
+    >>> SdkPython().cancel_dlvr(api_key,id)
 ```

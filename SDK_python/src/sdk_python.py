@@ -29,6 +29,7 @@ class SdkPython():
         self,
         api_key,
         time_type,
+        pickup_time,
         vehicle_type_id,
         packs,
         locations
@@ -37,6 +38,7 @@ class SdkPython():
         return self._quote.sdk_quote_conn(
             api_key,
             time_type,
+            pickup_time,
             vehicle_type_id,
             packs,
             locations
