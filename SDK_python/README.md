@@ -59,8 +59,7 @@ After getting API key and example data from duke@deliveree.com, you can start te
             time_type,
             pickup_time,
             job_order_number,
-            locations,
-            require_signatures
+            locations
     )
 ```
 

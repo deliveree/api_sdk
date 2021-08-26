@@ -61,8 +61,7 @@ class SdkPython():
         time_type,
         pickup_time,
         job_order_number,
-        locations,
-        require_signatures
+        locations
     ):
 
         return self._create_dlvr.sdk_create_dlvr_conn(
@@ -72,8 +71,7 @@ class SdkPython():
             time_type,
             pickup_time,
             job_order_number,
-            locations,
-            require_signatures
+            locations
         )
 
     def cancel_dlvr(self, api_key, id):
