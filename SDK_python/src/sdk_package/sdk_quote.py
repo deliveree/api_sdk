@@ -20,6 +20,7 @@ class SDKquote():
         self,
         api_key,
         time_type,
+        pickup_time,
         vehicle_type_id,
         packs,
         locations
@@ -28,6 +29,7 @@ class SDKquote():
         conf = self.conf["sdk-quote"]
         data = conf["payload"]
         data["time_type"] = time_type
+        data["pickup_time"] = pickup_time
         data["vehicle_type_id"] = vehicle_type_id
         data["packs"] = packs
         data["locations"] = locations

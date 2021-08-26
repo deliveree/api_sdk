@@ -24,7 +24,8 @@ class SdkCreateDlvr():
         time_type,
         pickup_time,
         job_order_number,
-        locations
+        locations,
+        require_signatures
     ):
 
         conf = self.conf["sdk-create-dlvr"]
@@ -35,11 +36,12 @@ class SdkCreateDlvr():
         data["locations"] = self._locations(locations)
         data["job_order_number"] = self._job_order_number(job_order_number)
         data["pickup_time"] = self._pickup_time(pickup_time)
+        data["require_signatures"] = self._require_signatures(require_signatures)
         payload = json.dumps(data)
         headers = conf["headers"]
         headers["Authorization"] = api_key
 
-        conn = requests.post(
+        conn = requests.get(
             conf["url"],
             headers=headers,
             data=payload,
@@ -85,5 +87,11 @@ class SdkCreateDlvr():
     def _pickup_time(self, value):
         if type(value) != str:
             raise Exception("note expect a str")
+
+        return value
+
+    def _require_signatures(self, value):
+        if type(value) != bool:
+            raise Exception("note expect a boolean")
 
         return value
