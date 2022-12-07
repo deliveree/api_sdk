@@ -33,7 +33,7 @@ Contact: duke@deliveree.com
 		<Reference Include="System.Data" />
 		<Reference Include="System.Runtime.Serialization" />
 		<Reference Include="System.Xml" />
-		<PackageReference Include="Newtonsoft.Json" Version="10.0.3" PrivateAssets="none" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.2" PrivateAssets="none" />
 		<PackageReference Include="JsonSubTypes" Version="1.2.0" PrivateAssets="none" />
 		<PackageReference Include="RestSharp" Version="106.0.0" PrivateAssets="none" />
 	</ItemGroup>
